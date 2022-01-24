@@ -1,40 +1,47 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import Categories from "./components/categories/Categories.component";
 import Menu from "./components/menu/Menu.component";
+import Navbar from "./components/navbar/Navbar.component";
+import { Route, Routes } from "react-router";
 import items from "./data/data";
 import { recipe } from "./types/types";
 
 function App() {
-  const [menuItems, setMenuItems] = useState<Array<recipe>>(items);
-  const [categories, setCategories] = useState<Array<string>>([
-    "all",
-    ...new Set(items.map((item) => item.category)),
-  ]);
+  const [menuItems, setMenuItems] = useState<Array<recipe>>([]);
+  const [filteredMenuItems, setFilteredMenuItems] =
+    useState<Array<recipe>>(items);
+  const [categories, setCategories] = useState<Array<string>>([]);
 
   const filterItems = (category: string) => {
-    console.log(
-      "🚀 ~ file: App.tsx ~ line 16 ~ filterItems ~ category",
-      category
-    );
     if (category === "all") {
-      setMenuItems(items);
+      setFilteredMenuItems(items);
       return;
     }
     const newItems = menuItems.filter((item) => item.category === category);
-
-    setMenuItems(newItems);
+    setFilteredMenuItems(newItems);
   };
+
+  useEffect(() => {
+    setCategories(["all", ...new Set(items.map((item) => item.category))]);
+    setMenuItems(items);
+  }, []);
 
   return (
     <main>
-      <section className="menu section">
-        <div className="title">
-          <h2>our menu</h2>
-          <div className="underline"></div>
-        </div>
-        <Categories categories={categories} filterItems={filterItems} />
-        <Menu items={menuItems} />
-      </section>
+      <Navbar />
+      <Routes>
+        <Route
+          path="/"
+          element={
+            <>
+              <Categories categories={categories} filterItems={filterItems} />
+              <Menu items={filteredMenuItems} />
+            </>
+          }
+        />
+        <Route path="/special" element={<>special</>} />
+        <Route path="*" element={<>Error 404!</>} />
+      </Routes>
     </main>
   );
 }

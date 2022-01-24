@@ -1,0 +1,12 @@
+.wrapper {
+  display: flex;
+  gap: 1rem;
+  justify-content: center;
+}
+
+button {
+  cursor: pointer;
+  padding: 0.3rem 0.8rem;
+  text-transform: capitalize;
+  line-height: 1.2;
+}

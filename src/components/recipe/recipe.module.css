@@ -1,0 +1,14 @@
+.title {
+  margin: 0.6rem auto;
+}
+
+.descContainer {
+  padding-left: 20px;
+}
+.descContainer > p + p {
+  margin-top: 1rem;
+}
+.descContainer p::first-letter {
+  font-size: 1.8rem;
+  color: #8a2be2;
+}
