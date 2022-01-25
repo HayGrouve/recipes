@@ -2,11 +2,11 @@
   display: flex;
   gap: 1rem;
   justify-content: center;
+  align-items: center;
+  margin-block: 2rem;
 }
-
-button {
-  cursor: pointer;
-  padding: 0.3rem 0.8rem;
-  text-transform: capitalize;
-  line-height: 1.2;
+@media (max-width: 668px) {
+  .wrapper {
+    flex-direction: column;
+  }
 }

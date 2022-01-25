@@ -1,10 +1,12 @@
 import { useEffect, useState } from "react";
-import Categories from "./components/categories/Categories.component";
-import Menu from "./components/menu/Menu.component";
 import Navbar from "./components/navbar/Navbar.component";
 import { Route, Routes } from "react-router";
 import items from "./data/data";
 import { recipe } from "./types/types";
+import Error404 from "./components/404/Error404.component";
+import Landing from "./components/landing/Landing.component";
+import Recipe from "./components/recipe/Recipe.component";
+import Footer from "./components/footer/Footer.component";
 
 function App() {
   const [menuItems, setMenuItems] = useState<Array<recipe>>([]);
@@ -33,15 +35,17 @@ function App() {
         <Route
           path="/"
           element={
-            <>
-              <Categories categories={categories} filterItems={filterItems} />
-              <Menu items={filteredMenuItems} />
-            </>
+            <Landing
+              categories={categories}
+              filterItems={filterItems}
+              filteredMenuItems={filteredMenuItems}
+            />
           }
         />
-        <Route path="/special" element={<>special</>} />
-        <Route path="*" element={<>Error 404!</>} />
+        <Route path="/recipe/:id" element={<Recipe items={items} />} />
+        <Route path="*" element={<Error404 />} />
       </Routes>
+      <Footer />
     </main>
   );
 }

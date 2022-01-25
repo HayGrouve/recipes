@@ -1,9 +1,15 @@
+:root {
+  --main-accent-color: #2980b9;
+  --main-text-color: #101314;
+}
 /* Box sizing rules */
 *,
 *::before,
 *::after {
   box-sizing: border-box;
 }
+
+@import url("https://fonts.googleapis.com/css2?family=Arvo:wght@400;700&display=swap");
 
 /* Remove default margin */
 body,
@@ -41,11 +47,16 @@ body {
   min-height: 100vh;
   text-rendering: optimizeSpeed;
   line-height: 1.4;
-  font-family: sans-serif;
+  font-family: "Arvo", serif;
+  background: #bde4ff52;
+  color: var(--main-text-color);
 }
 
-main > * + * {
-  margin-top: 2rem;
+main {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  gap: 5vw;
 }
 
 /* A elements that don't have a class get default styles */
@@ -66,6 +77,24 @@ button,
 textarea,
 select {
   font: inherit;
+}
+
+button {
+  cursor: pointer;
+  padding: 0.3rem 0.8rem;
+  text-transform: capitalize;
+  line-height: 1.2;
+  border-radius: 5px;
+  border: 1px solid var(--main-accent-color);
+  background-color: white;
+  transition: all 0.3s;
+}
+
+button:hover,
+button:focus,
+button:active {
+  background-color: var(--main-accent-color);
+  color: white;
 }
 
 /* Remove all animations, transitions and smooth scroll for people that prefer not to see them */

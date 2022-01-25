@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
+import { useNavigate } from "react-router-dom";
 import { recipe } from "../../types/types";
-import Recipe from "../recipe/recipe.component";
 import styles from "./menu.module.css";
 
 interface IProps {
@@ -9,41 +9,47 @@ interface IProps {
 
 const Menu: React.FC<IProps> = ({ items }) => {
   const [localItems, setLocalItems] = useState(items);
-  const [showRecipe, setShowRecipe] = useState(false);
 
-  let selectedCard = [styles.card];
+  const navigate = useNavigate();
+  const articleStyles = [styles.wrapper];
 
   const onClick = (id: number) => {
-    setLocalItems(localItems.filter((item) => item.id === id));
-    setShowRecipe(true);
+    navigate(`/recipe/${id}`);
   };
-  useEffect(() => {
-    selectedCard.push(styles.selectedCard);
-  }, [showRecipe]);
+
+  switch (items.length) {
+    case 3:
+      articleStyles.push(styles.responsiveCard3);
+      break;
+    case 2:
+      articleStyles.push(styles.responsiveCard2);
+      break;
+    case 1:
+      articleStyles.push(styles.responsiveCard1);
+      break;
+  }
 
   useEffect(() => {
     setLocalItems(items);
-    setShowRecipe(false);
   }, [items]);
 
   return (
     <div className="container">
-      <section className={styles.wrapper}>
+      <section className={articleStyles.join(" ")}>
         {localItems.map((menuItem: recipe) => {
-          const { id, title, img, ingredients, desc } = menuItem;
+          const { id, title, img } = menuItem;
           return (
             <article
               key={id}
-              className={selectedCard.join(" ")}
+              className={styles.card}
               onClick={() => onClick(id)}
             >
-              <img src={img} alt={title} />
+              <img className={styles.image} src={img} alt={title} />
               <section className="container">
                 <header>
                   <h3 className={styles.title}>{title}</h3>
                   <hr />
                 </header>
-                {showRecipe && <Recipe ingredients={ingredients} desc={desc} />}
               </section>
             </article>
           );

@@ -18,7 +18,6 @@ const Categories: React.FC<IProps> = ({ categories, filterItems }) => {
             return (
               <button
                 type="button"
-                className="filter-btn"
                 key={index}
                 onClick={() => filterItems(category)}
               >

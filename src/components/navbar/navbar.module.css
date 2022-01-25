@@ -2,17 +2,35 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
-  background-color: lightblue;
+  color: #fff;
   padding-inline: 1rem;
 }
 
-ul {
+.background {
+  background-color: var(--main-accent-color);
+}
+
+.list {
   display: flex;
   gap: 1rem;
   padding: 0;
+  margin: 0;
 }
 
-.navItems {
-  text-decoration: none;
-  color: inherit;
+.list li {
+  transition: all 0.3s;
+  padding: 1.2rem 0.5rem;
+  cursor: pointer;
+}
+.list li:hover {
+  background: #bde4ff52;
+}
+
+.icon {
+  margin-inline: 0.4rem;
+}
+
+.logo {
+  max-width: 5.1rem;
+  cursor: pointer;
 }
