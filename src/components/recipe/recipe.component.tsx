@@ -1,4 +1,4 @@
-import { faChevronLeft } from "@fortawesome/free-solid-svg-icons";
+import { faTimes } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import React, { useEffect, useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
@@ -43,7 +43,7 @@ const Recipe: React.FC<IProps> = ({ items }) => {
       </section>
       <section className={styles.rightSection}>
         <div>
-          <h4 className={styles.title}>Продукти:</h4>
+          <h3 className={styles.title}>Продукти:</h3>
           <ol>
             {ingredients.split("\n").map((i, key) => {
               return (
@@ -55,7 +55,7 @@ const Recipe: React.FC<IProps> = ({ items }) => {
           </ol>
         </div>
         <div>
-          <h4 className={styles.title}>Начин на приготвяне:</h4>
+          <h3 className={styles.title}>Начин на приготвяне:</h3>
           <article className={styles.descContainer}>
             {desc.map((i, key) => {
               return <p key={key}>{i}</p>;
@@ -67,7 +67,7 @@ const Recipe: React.FC<IProps> = ({ items }) => {
           className={styles.btn}
           onClick={() => navigate("/")}
         >
-          <FontAwesomeIcon icon={faChevronLeft} />
+          <FontAwesomeIcon icon={faTimes} size="lg" />
         </button>
       </section>
     </section>

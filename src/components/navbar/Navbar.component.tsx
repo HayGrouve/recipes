@@ -1,15 +1,10 @@
-import {
-  faUser,
-  faUserPlus,
-  faUtensils,
-} from "@fortawesome/free-solid-svg-icons";
+import { faHome, faUser, faUserPlus } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { useNavigate } from "react-router-dom";
+import SVG from "react-inlinesvg";
 import styles from "./navbar.module.css";
 
 const Navbar = () => {
-  const wrapperStyles = [styles.wrapper, "container"];
-
   const navigate = useNavigate();
 
   const onClick = (path: string) => {
@@ -17,20 +12,17 @@ const Navbar = () => {
   };
 
   return (
-    <section>
-      <div className={styles.background}>
-        <nav className={wrapperStyles.join(" ")}>
-          <img
-            title="Go Home"
-            onClick={() => onClick("/")}
-            className={styles.logo}
-            src="/images/logo.jpg"
-            alt="Logo"
-          />
+    <section className={styles.navPosition}>
+      <div>
+        <nav className={styles.wrapper}>
+          <div onClick={() => onClick("/")} className={styles.logoContainer}>
+            <SVG src="/images/logo.svg" className={styles.logo} />
+            <span>Вкусно!</span>
+          </div>
           <ul className={styles.list}>
             <li onClick={() => onClick("/")}>
-              <FontAwesomeIcon className={styles.icon} icon={faUtensils} />
-              Recipes
+              <FontAwesomeIcon className={styles.icon} icon={faHome} />
+              Home
             </li>
           </ul>
           <ul className={styles.list}>

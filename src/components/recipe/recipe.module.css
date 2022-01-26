@@ -1,5 +1,7 @@
 .title {
   margin: 0.6rem auto;
+  font-family: "Lobster", cursive;
+  letter-spacing: 0.3rem;
 }
 
 .descContainer {
@@ -17,7 +19,7 @@
   display: grid;
   grid-template-columns: 1fr 2fr;
   gap: 2vw;
-  /* min-height: 76.5vh; */
+  margin-block: 10vw;
 }
 
 .imageTitle {
@@ -37,7 +39,8 @@
   align-items: center;
   border-radius: 0 0 10px 10px;
   letter-spacing: 0.14rem;
-  color: var(--main-text-color);
+  color: white;
+  text-shadow: 2px 2px #222;
   text-align: center;
 }
 
@@ -66,13 +69,34 @@
   position: absolute;
   top: 1.35rem;
   color: var(--main-accent-color);
-  min-width: 3vw;
-  aspect-ratio: 2/1;
-  border: 1px solid var(--main-accent-color);
+  border: none;
+  animation: bounce 2s ease 3;
+}
+
+.btn:hover,
+.btn:active,
+.btn:focus {
+  background: #f14e45;
 }
 
 .img {
   border-radius: 10px;
+}
+
+@keyframes bounce {
+  0%,
+  20%,
+  50%,
+  80%,
+  100% {
+    transform: translateY(0);
+  }
+  40% {
+    transform: translateY(-15px);
+  }
+  60% {
+    transform: translateY(-5px);
+  }
 }
 
 @media (max-width: 1100px) {

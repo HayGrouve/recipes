@@ -3,10 +3,14 @@
   gap: 1rem;
   justify-content: center;
   align-items: center;
-  margin-block: 2rem;
+  margin-block: 10rem;
+  flex-direction: column;
+  position: -webkit-sticky; /* Safari */
+  position: sticky;
+  top: 5rem;
 }
-@media (max-width: 668px) {
+@media (max-width: 1100px) {
   .wrapper {
-    flex-direction: column;
+    flex-direction: row;
   }
 }

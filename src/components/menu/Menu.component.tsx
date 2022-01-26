@@ -12,6 +12,7 @@ const Menu: React.FC<IProps> = ({ items }) => {
 
   const navigate = useNavigate();
   const articleStyles = [styles.wrapper];
+  const wrapperStyles = [styles.layoutContainer, "scrollTo"];
 
   const onClick = (id: number) => {
     navigate(`/recipe/${id}`);
@@ -34,7 +35,7 @@ const Menu: React.FC<IProps> = ({ items }) => {
   }, [items]);
 
   return (
-    <div className="container">
+    <div className={wrapperStyles.join(" ")}>
       <section className={articleStyles.join(" ")}>
         {localItems.map((menuItem: recipe) => {
           const { id, title, img } = menuItem;

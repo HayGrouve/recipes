@@ -1,11 +1,17 @@
 .page_404 {
   padding: 40px 0;
-  margin: 0;
+  margin-top: 70px;
   background: #fff;
 }
 
 .page_404 img {
   width: 100%;
+}
+
+.wrapper {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
 }
 
 .four_zero_four_bg {
@@ -17,10 +23,7 @@
 
 .four_zero_four_bg h1 {
   font-size: 80px;
-}
-
-.four_zero_four_bg h3 {
-  font-size: 80px;
+  margin-top: 2vw;
 }
 
 .btn {
@@ -29,7 +32,7 @@
   margin: 20px 0;
   display: inline-block;
   text-decoration: none;
-  transition: all 0.3s;
+  transition: all 0.2s;
 }
 
 .contant_box_404 {

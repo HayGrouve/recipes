@@ -1,5 +1,6 @@
 import { recipe } from "../../types/types";
 import Categories from "../categories/Categories.component";
+import Hero from "../hero/Hero.component";
 import Menu from "../menu/Menu.component";
 import styles from "./landing.module.css";
 
@@ -14,9 +15,12 @@ const Landing: React.FC<IProps> = ({
   filteredMenuItems,
 }) => {
   return (
-    <section className={styles.wrapper}>
-      <Categories categories={categories} filterItems={filterItems} />
-      <Menu items={filteredMenuItems} />
+    <section>
+      <Hero />
+      <div className={styles.menuLayout}>
+        <Categories categories={categories} filterItems={filterItems} />
+        <Menu items={filteredMenuItems} />
+      </div>
     </section>
   );
 };

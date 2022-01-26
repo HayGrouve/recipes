@@ -7,8 +7,8 @@ import styles from "./error404.module.css";
 const Error404: React.FC = () => {
   const navigate = useNavigate();
   return (
-    <section className={styles.page_404}>
-      <div className="container">
+    <div className={styles.wrapper}>
+      <section className={styles.page_404}>
         <div className={styles.textCenter}>
           <div>
             <div>
@@ -19,7 +19,7 @@ const Error404: React.FC = () => {
               <div className={styles.contant_box_404}>
                 <h3>Look like you're lost</h3>
 
-                <p>the page you are looking for not avaible!</p>
+                <p>the page you are looking for is not available!</p>
                 <button className={styles.btn} onClick={() => navigate("/")}>
                   <FontAwesomeIcon className={styles.icon} icon={faHome} />
                   Go Home
@@ -28,8 +28,8 @@ const Error404: React.FC = () => {
             </div>
           </div>
         </div>
-      </div>
-    </section>
+      </section>
+    </div>
   );
 };
 
