@@ -1,11 +1,11 @@
 import { useEffect, useState } from "react";
-import Navbar from "./components/common/navbar/Navbar.component";
+import Navbar from "./components/common/navbar/navbar.component";
 import { Route, Routes } from "react-router";
 import items from "./data/data";
 import Error404 from "./pages/404/Error404.component";
 import Landing from "./pages/landing/Landing.component";
 import Recipe from "./pages/recipe/Recipe.component";
-import Footer from "./components/common/footer/Footer.component";
+import Footer from "./components/common/footer/footer.component";
 import { recipe } from "./models/recipe.model";
 import AppContextProvider from "./utils/combineContextProviders";
 import FootballFixturesProvider from "./contexts/footballFixturesContext";

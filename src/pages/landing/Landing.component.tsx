@@ -1,6 +1,6 @@
-import Categories from "../../components/categories/Categories.component";
-import Hero from "../../components/hero/Hero.component";
-import Menu from "../../components/menu/Menu.component";
+import Categories from "../../components/categories/categories.component";
+import Hero from "../../components/hero/hero.component";
+import Menu from "../../components/menu/menu.component";
 import { recipe } from "../../models/recipe.model";
 import styles from "./landing.module.css";
 
