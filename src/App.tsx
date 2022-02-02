@@ -31,8 +31,7 @@ function App() {
   }, []);
 
   return (
-    <div className="app">
-      //TODO change to div but check styles
+    <div>
       <AppContextProvider providers={[FootballFixturesProvider]}>
         <Navbar />
         <Routes>

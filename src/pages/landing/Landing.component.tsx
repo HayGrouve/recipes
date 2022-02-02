@@ -9,11 +9,13 @@ interface IProps {
   filterItems: (category: string) => void;
   filteredMenuItems: recipe[];
 }
+
 const Landing: React.FC<IProps> = ({
   categories,
   filterItems,
   filteredMenuItems,
 }) => {
+  // const { test } = useContext(FootballFixturesContext);
   return (
     <section>
       <Hero />
