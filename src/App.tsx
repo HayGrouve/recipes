@@ -31,7 +31,7 @@ function App() {
   }, []);
 
   return (
-    <div>
+    <div className="app">
       <AppContextProvider providers={[FootballFixturesProvider]}>
         <Navbar />
         <Routes>

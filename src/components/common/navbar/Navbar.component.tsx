@@ -16,7 +16,7 @@ const Navbar = () => {
       <div>
         <nav className={styles.wrapper}>
           <div onClick={() => onClick("/")} className={styles.logoContainer}>
-            <SVG src="/images/logo.svg" className={styles.logo} />
+            <SVG src="/assets/images/logo.svg" className={styles.logo} />
             <span>Вкусно!</span>
           </div>
           <ul className={styles.list}>

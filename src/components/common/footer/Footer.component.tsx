@@ -41,7 +41,7 @@ const Footer: React.FC = () => {
         <FontAwesomeIcon icon={faChevronUp} size="2x" />
       </button>
       <div onClick={() => navigate("/")} className={styles.logoContainer}>
-        <SVG src="/images/logo.svg" className={styles.logo} />
+        <SVG src="/assets/images/logo.svg" className={styles.logo} />
         <span>Вкусно!</span>
       </div>
       <section className={styles.socialMedia}>

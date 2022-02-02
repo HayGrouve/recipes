@@ -18,7 +18,7 @@ const items = [
     id: 12,
     title: "buttermilk pancakes",
     category: "breakfast",
-    img: "./images/pankakes.jpg",
+    img: "./assets/images/pankakes.jpg",
     ingredients: `400ml milk
     2 eggs`,
     desc: [
@@ -31,7 +31,7 @@ const items = [
     id: 123,
     title: "buttermilk pancakes",
     category: "breakfast",
-    img: "./images/pankakes.jpg",
+    img: "./assets/images/pankakes.jpg",
     ingredients: `400ml milk
     2 eggs`,
     desc: [
@@ -44,7 +44,7 @@ const items = [
     id: 2,
     title: "diner double",
     category: "lunch",
-    img: "./images/pankakes.jpg",
+    img: "./assets/images/pankakes.jpg",
     ingredients: `400ml milk
     50гр пудра захар`,
     desc: [
@@ -66,7 +66,7 @@ const items = [
     id: 33,
     title: "godzilla milkshake",
     category: "dinner",
-    img: "./images/pankakes.jpg",
+    img: "./assets/images/pankakes.jpg",
     ingredients: `400ml milk
     2 eggs`,
     desc: [
@@ -88,7 +88,7 @@ const items = [
     id: 330,
     title: "godzilla milkshake",
     category: "dinner",
-    img: "./images/pankakes.jpg",
+    img: "./assets/images/pankakes.jpg",
     ingredients: `400ml milk
     2 eggs`,
     desc: [

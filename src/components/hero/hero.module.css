@@ -10,7 +10,8 @@
   clear: both;
   position: absolute;
   margin-bottom: 200px;
-  background: url("../../../public/images/cover.jpg") no-repeat center center;
+  background: url("../../../public/assets/images/cover.jpg") no-repeat center
+    center;
   background-size: cover;
   display: flex;
   justify-content: center;

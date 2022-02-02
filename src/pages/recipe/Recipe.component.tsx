@@ -20,7 +20,7 @@ const Recipe: React.FC<IProps> = ({ items }) => {
   const wrapperStyles = ["container", styles.wrapper];
 
   const handleImgError = () => {
-    setLocalImage("/images/recipe.jpg");
+    setLocalImage("/assets/images/recipe.jpg");
   };
 
   useEffect(() => {
