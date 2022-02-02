@@ -2,7 +2,8 @@ import { faTimes } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import React, { useEffect, useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
-import { recipe, recipeMock } from "../../types/types";
+import { recipeMock } from "../../mocks/recipe.mock";
+import { recipe } from "../../models/recipe.model";
 import styles from "./recipe.module.css";
 
 interface IProps {

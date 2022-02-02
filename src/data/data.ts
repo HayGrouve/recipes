@@ -73,5 +73,27 @@ const items = [
       `ombucha chillwave fanny pack 3 wolf moon street art photo booth before they sold out organic viral.`,
     ],
   },
+  {
+    id: 30,
+    title: "godzilla milkshake",
+    category: "dinner",
+    img: "https://img.buzzfeed.com/thumbnailer-prod-us-east-1/video-api/assets/119674.jpg",
+    ingredients: `400ml milk
+    2 eggs`,
+    desc: [
+      `ombucha chillwave fanny pack 3 wolf moon street art photo booth before they sold out organic viral.`,
+    ],
+  },
+  {
+    id: 330,
+    title: "godzilla milkshake",
+    category: "dinner",
+    img: "./images/pankakes.jpg",
+    ingredients: `400ml milk
+    2 eggs`,
+    desc: [
+      `ombucha chillwave fanny pack 3 wolf moon street art photo booth before they sold out organic viral.`,
+    ],
+  },
 ];
 export default items;

@@ -1,7 +1,7 @@
-import { recipe } from "../../types/types";
-import Categories from "../categories/Categories.component";
-import Hero from "../hero/Hero.component";
-import Menu from "../menu/Menu.component";
+import Categories from "../../components/categories/Categories.component";
+import Hero from "../../components/hero/Hero.component";
+import Menu from "../../components/menu/Menu.component";
+import { recipe } from "../../models/recipe.model";
 import styles from "./landing.module.css";
 
 interface IProps {

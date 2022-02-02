@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
-import { recipe } from "../../types/types";
+import { recipe } from "../../models/recipe.model";
 import styles from "./menu.module.css";
 
 interface IProps {
