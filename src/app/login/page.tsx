@@ -1,12 +1,12 @@
-import { SignUp } from "@clerk/nextjs";
+import { SignIn } from "@clerk/nextjs";
 import React from "react";
 
-interface IRegister {}
+interface ILogin {}
 
-const Register: React.FC<IRegister> = ({}) => {
+const Login: React.FC<ILogin> = ({}) => {
   return (
     <div className="flex min-h-screen justify-center bg-gray-800 pt-10">
-      <SignUp
+      <SignIn
         appearance={{
           variables: {
             colorPrimary: "#3b82f6",
@@ -18,4 +18,4 @@ const Register: React.FC<IRegister> = ({}) => {
   );
 };
 
-export default Register;
+export default Login;
