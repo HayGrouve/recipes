@@ -4,8 +4,14 @@
 
 .responsive-grid{
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+  grid-template-columns: repeat(auto-fit, minmax(450px, 1fr));
   grid-gap: 1rem;
+}
+
+.body-background{
+  background-image: url("../../public/img.jpg");
+  background-size: cover;
+  height: 100dvh;
 }
  
 @layer base {

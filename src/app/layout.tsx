@@ -18,7 +18,10 @@ export default function RootLayout({
   return (
     <ClerkProvider>
       <html lang="en">
-        <body suppressHydrationWarning={true} className={inter.className}>
+        <body
+          suppressHydrationWarning={true}
+          className={`${inter.className} body-background`}
+        >
           <Navbar />
           {children}
         </body>
