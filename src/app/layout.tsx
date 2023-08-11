@@ -1,13 +1,17 @@
 import "./globals.css";
 import type { Metadata } from "next";
-import { Inter } from "next/font/google";
+import { Roboto } from "next/font/google";
 import Navbar from "../components/navbar";
 import { ClerkProvider } from "@clerk/nextjs";
+import Footer from "../components/footer";
 
-const inter = Inter({ subsets: ["latin"] });
+const roboto = Roboto({
+  weight: "400",
+  subsets: ["latin"],
+});
 
 export const metadata: Metadata = {
-  title: "Recipes App",
+  title: "Vkusotiiki",
 };
 
 export default function RootLayout({
@@ -20,10 +24,11 @@ export default function RootLayout({
       <html lang="en">
         <body
           suppressHydrationWarning={true}
-          className={`${inter.className} body-background`}
+          className={`${roboto.className} body-background tracking-wide`}
         >
           <Navbar />
           {children}
+          <Footer />
         </body>
       </html>
     </ClerkProvider>

@@ -1,7 +1,6 @@
 "use client";
 
 import Link from "next/link";
-import { useUser } from "@clerk/nextjs";
 import { Input } from "../components/ui/input";
 import {
   Select,
@@ -12,20 +11,22 @@ import {
 } from "../components/ui/select";
 import Pagination from "../components/pagination";
 import { Separator } from "../components/ui/separator";
-import { useState } from "react";
+import { ChangeEvent, useState } from "react";
+import { Label } from "../components/ui/label";
 
 export default function Home() {
-  const { user } = useUser();
-  const [searchValue, setSearchValue] = useState("");
-
   const mockedRecipes = [
     {
       id: 1,
-      title: "Recipe title",
+      title: "Ice cream",
       description:
         "Lorem ipsum dolor sit amet consectetur adipisicing elit. Suscipit non, eum molestias dolorem doloremque neque natus explicabo. Illo praesentium placeat et nihil doloremque perspiciatis suscipit laudantium molestiae? Animi id alias ad similique. Asperiores, ullam numquam debitis vero enim tenetur dicta voluptates at ipsam voluptatem inventore quibusdam ab. Reprehenderit, vitae nesciunt.",
       img: "url",
-      author: { id: "userId", userName: "Author" },
+      category: "sweet",
+      authorId: "123",
+      authorName: "Cveti",
+      authorImg:
+        "https://img.clerk.com/eyJ0eXBlIjoicHJveHkiLCJzcmMiOiJodHRwczovL2ltYWdlcy5jbGVyay5kZXYvb2F1dGhfZ29vZ2xlL2ltZ18yUElNOUJQQXVyMWhFWVV4Qk9Wdm41dGVrWDkuanBlZyJ9",
       createdAt: new Date(),
     },
     {
@@ -34,7 +35,10 @@ export default function Home() {
       description:
         "Lorem ipsum dolor sit amet consectetur adipisicing elit. Suscipit non, eum molestias dolorem doloremque neque natus explicabo. Illo praesentium placeat et nihil doloremque perspiciatis suscipit laudantium molestiae? Animi id alias ad similique. Asperiores, ullam numquam debitis vero enim tenetur dicta voluptates at ipsam voluptatem inventore quibusdam ab. Reprehenderit, vitae nesciunt.",
       img: "url",
-      author: { id: "userId", userName: "Author" },
+      category: "breakfast",
+      authorId: "123",
+      authorName: "John Doe",
+      authorImg: "",
       createdAt: new Date(),
     },
     {
@@ -43,7 +47,10 @@ export default function Home() {
       description:
         "Lorem ipsum dolor sit amet consectetur adipisicing elit. Suscipit non, eum molestias dolorem doloremque neque natus explicabo. Illo praesentium placeat et nihil doloremque perspiciatis suscipit laudantium molestiae? Animi id alias ad similique. Asperiores, ullam numquam debitis vero enim tenetur dicta voluptates at ipsam voluptatem inventore quibusdam ab. Reprehenderit, vitae nesciunt.",
       img: "url",
-      author: { id: "userId", userName: "Author" },
+      category: "breakfast",
+      authorId: "123",
+      authorName: "John Doe",
+      authorImg: "",
       createdAt: new Date(),
     },
     {
@@ -52,7 +59,10 @@ export default function Home() {
       description:
         "Lorem ipsum dolor sit amet consectetur adipisicing elit. Suscipit non, eum molestias dolorem doloremque neque natus explicabo. Illo praesentium placeat et nihil doloremque perspiciatis suscipit laudantium molestiae? Animi id alias ad similique. Asperiores, ullam numquam debitis vero enim tenetur dicta voluptates at ipsam voluptatem inventore quibusdam ab. Reprehenderit, vitae nesciunt.",
       img: "url",
-      author: { id: "userId", userName: "Author" },
+      category: "lunch",
+      authorId: "123",
+      authorName: "John Doe",
+      authorImg: "",
       createdAt: new Date(),
     },
     {
@@ -61,7 +71,10 @@ export default function Home() {
       description:
         "Lorem ipsum dolor sit amet consectetur adipisicing elit. Suscipit non, eum molestias dolorem doloremque neque natus explicabo. Illo praesentium placeat et nihil doloremque perspiciatis suscipit laudantium molestiae? Animi id alias ad similique. Asperiores, ullam numquam debitis vero enim tenetur dicta voluptates at ipsam voluptatem inventore quibusdam ab. Reprehenderit, vitae nesciunt.",
       img: "url",
-      author: { id: "userId", userName: "Author" },
+      category: "lunch",
+      authorId: "123",
+      authorName: "John Doe",
+      authorImg: "",
       createdAt: new Date(),
     },
     {
@@ -70,7 +83,10 @@ export default function Home() {
       description:
         "Lorem ipsum dolor sit amet consectetur adipisicing elit. Suscipit non, eum molestias dolorem doloremque neque natus explicabo. Illo praesentium placeat et nihil doloremque perspiciatis suscipit laudantium molestiae? Animi id alias ad similique. Asperiores, ullam numquam debitis vero enim tenetur dicta voluptates at ipsam voluptatem inventore quibusdam ab. Reprehenderit, vitae nesciunt.",
       img: "url",
-      author: { id: "userId", userName: "Author" },
+      category: "lunch",
+      authorId: "123",
+      authorName: "John Doe",
+      authorImg: "",
       createdAt: new Date(),
     },
     {
@@ -79,7 +95,10 @@ export default function Home() {
       description:
         "Lorem ipsum dolor sit amet consectetur adipisicing elit. Suscipit non, eum molestias dolorem doloremque neque natus explicabo. Illo praesentium placeat et nihil doloremque perspiciatis suscipit laudantium molestiae? Animi id alias ad similique. Asperiores, ullam numquam debitis vero enim tenetur dicta voluptates at ipsam voluptatem inventore quibusdam ab. Reprehenderit, vitae nesciunt.",
       img: "url",
-      author: { id: "userId", userName: "Author" },
+      category: "dinner",
+      authorId: "123",
+      authorName: "John Doe",
+      authorImg: "",
       createdAt: new Date(),
     },
     {
@@ -88,7 +107,10 @@ export default function Home() {
       description:
         "Lorem ipsum dolor sit amet consectetur adipisicing elit. Suscipit non, eum molestias dolorem doloremque neque natus explicabo. Illo praesentium placeat et nihil doloremque perspiciatis suscipit laudantium molestiae? Animi id alias ad similique. Asperiores, ullam numquam debitis vero enim tenetur dicta voluptates at ipsam voluptatem inventore quibusdam ab. Reprehenderit, vitae nesciunt.",
       img: "url",
-      author: { id: "userId", userName: "Author" },
+      category: "dinner",
+      authorId: "123",
+      authorName: "John Doe",
+      authorImg: "",
       createdAt: new Date(),
     },
     {
@@ -97,44 +119,144 @@ export default function Home() {
       description:
         "Lorem ipsum dolor sit amet consectetur adipisicing elit. Suscipit non, eum molestias dolorem doloremque neque natus explicabo. Illo praesentium placeat et nihil doloremque perspiciatis suscipit laudantium molestiae? Animi id alias ad similique. Asperiores, ullam numquam debitis vero enim tenetur dicta voluptates at ipsam voluptatem inventore quibusdam ab. Reprehenderit, vitae nesciunt.",
       img: "url",
-      author: { id: "userId", userName: "Author" },
+      category: "dinner",
+      authorId: "123",
+      authorName: "John Doe",
+      authorImg: "",
       createdAt: new Date(),
     },
   ];
+  const [searchValue, setSearchValue] = useState("");
+  const [recipes, setRecipes] = useState(mockedRecipes);
+
+  const onSearch = (e: ChangeEvent<HTMLInputElement>) => {
+    setSearchValue(e.target.value);
+    setRecipes(
+      mockedRecipes.filter((recipe) =>
+        recipe.title.toLowerCase().includes(e.target.value),
+      ),
+    );
+  };
+
+  const onSelectCategory = (category: string) => {
+    if (category === "all") {
+      setRecipes(mockedRecipes);
+      return;
+    }
+
+    setRecipes(
+      mockedRecipes.filter((recipe) => {
+        if (recipe.category.toLowerCase() === category.toLowerCase()) {
+          return recipe;
+        }
+      }),
+    );
+  };
+
+  const onSelectAuthor = (author: string) => {
+    if (author === "all") {
+      setRecipes(mockedRecipes);
+      return;
+    }
+
+    setRecipes(
+      mockedRecipes.filter((recipe) => {
+        if (recipe.authorName.toLowerCase() === author.toLowerCase()) {
+          return recipe;
+        }
+      }),
+    );
+  };
 
   return (
     <main className="mx-2 mt-5 sm:mx-10 lg:mt-10">
       <h1 className=" text-center text-4xl font-bold tracking-wide sm:text-7xl ">
         Recipes
       </h1>
-      <div className=" mt-2 flex items-center justify-center gap-5 sm:mt-10 md:justify-normal">
+      <div className="mt-2 flex flex-col items-center justify-center gap-5 sm:mt-10 lg:flex-row">
         <Input
           value={searchValue}
           onChange={(e) => {
-            setSearchValue(e.target.value);
+            onSearch(e);
           }}
           className="w-[150px]"
           placeholder="Search..."
         />
-        <Select>
-          <SelectTrigger className="w-[150px] bg-white">
+        <Label htmlFor="category" className="text-lg">
+          Category:
+        </Label>
+        <Select
+          onValueChange={(category) => {
+            onSelectCategory(category);
+          }}
+        >
+          <SelectTrigger id="category" className="w-[150px] bg-white">
             <SelectValue placeholder="Category" />
           </SelectTrigger>
           <SelectContent>
-            <SelectItem value="light">Light</SelectItem>
-            <SelectItem value="dark">Dark</SelectItem>
-            <SelectItem value="system">System</SelectItem>
+            <SelectItem value="all">All</SelectItem>
+            {recipes.map((recipe, index) => {
+              if (
+                index !== 0 &&
+                recipe.category === recipes[index - 1].category
+              ) {
+                return;
+              }
+              return (
+                <SelectItem
+                  key={recipe.id}
+                  value={recipe.category.toLowerCase()}
+                >
+                  {`${recipe.category
+                    .at(0)
+                    ?.toUpperCase()}${recipe.category.slice(1)}`}
+                </SelectItem>
+              );
+            })}
+          </SelectContent>
+        </Select>
+        <Label htmlFor="author" className="text-lg">
+          Author:
+        </Label>
+        <Select
+          onValueChange={(authorName) => {
+            onSelectAuthor(authorName);
+          }}
+        >
+          <SelectTrigger id="author" className="w-[150px] bg-white">
+            <SelectValue placeholder="Author" />
+          </SelectTrigger>
+          <SelectContent>
+            <SelectItem value="all">All</SelectItem>
+            {recipes.map((recipe, index) => {
+              if (
+                index !== 0 &&
+                recipe.authorName === recipes[index - 1].authorName
+              ) {
+                return;
+              }
+              return (
+                <SelectItem
+                  key={recipe.id}
+                  value={recipe.authorName.toLowerCase()}
+                >
+                  {`${recipe.authorName
+                    .at(0)
+                    ?.toUpperCase()}${recipe.authorName.slice(1)}`}
+                </SelectItem>
+              );
+            })}
           </SelectContent>
         </Select>
       </div>
       <div className="responsive-grid mt-2 justify-items-center  sm:mt-10">
-        {mockedRecipes.map((recipe) => {
+        {recipes.map((recipe) => {
           return (
             <div
               key={recipe.id}
               className="max-w-sm shadow-xl lg:flex lg:max-w-full"
             >
-              <div className="h-48 flex-none overflow-hidden rounded-t bg-cover text-center lg:h-auto lg:w-48 lg:rounded-l lg:rounded-t-none">
+              <div className="h-48 flex-none overflow-hidden rounded-t bg-cover text-center lg:h-auto lg:w-48 lg:rounded-t-none lg:rounded-bl lg:rounded-tl">
                 <Link href={`/${recipe.id}`}>
                   <img
                     className="h-full w-full object-cover"
@@ -161,12 +283,12 @@ export default function Home() {
                 <div className="flex items-center">
                   <img
                     className="mr-4 h-10 w-10 rounded-full"
-                    src={user?.imageUrl ? user.imageUrl : "./user.jpg"}
-                    alt={`Avatar of ${user?.fullName}`}
+                    src={recipe.authorImg ? recipe.authorImg : "./user.jpg"}
+                    alt={`Avatar of ${recipe.authorName}`}
                   />
                   <div className="text-sm">
                     <p className="leading-none text-gray-900">
-                      {user?.fullName}
+                      {recipe.authorName}
                     </p>
                     <p className="text-gray-600">
                       {`${recipe.createdAt.getDate()} ${recipe.createdAt

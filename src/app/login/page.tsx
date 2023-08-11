@@ -1,7 +1,12 @@
 import { SignIn } from "@clerk/nextjs";
+import { Metadata } from "next";
 import React from "react";
 
 interface ILogin {}
+
+export const metadata: Metadata = {
+  title: "Login",
+};
 
 const Login: React.FC<ILogin> = ({}) => {
   return (

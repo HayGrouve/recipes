@@ -1,7 +1,12 @@
 import { SignUp } from "@clerk/nextjs";
+import { Metadata } from "next";
 import React from "react";
 
 interface IRegister {}
+
+export const metadata: Metadata = {
+  title: "Register",
+};
 
 const Register: React.FC<IRegister> = ({}) => {
   return (
