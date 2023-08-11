@@ -13,6 +13,7 @@ import Pagination from "../components/pagination";
 import { Separator } from "../components/ui/separator";
 import { ChangeEvent, useState } from "react";
 import { Label } from "../components/ui/label";
+import Card from "../components/card";
 
 export default function Home() {
   const mockedRecipes = [
@@ -252,53 +253,14 @@ export default function Home() {
       <div className="responsive-grid mt-2 justify-items-center  sm:mt-10">
         {recipes.map((recipe) => {
           return (
-            <div
+            <Card
               key={recipe.id}
-              className="max-w-sm shadow-xl lg:flex lg:max-w-full"
-            >
-              <div className="h-48 flex-none overflow-hidden rounded-t bg-cover text-center lg:h-auto lg:w-48 lg:rounded-t-none lg:rounded-bl lg:rounded-tl">
-                <Link href={`/${recipe.id}`}>
-                  <img
-                    className="h-full w-full object-cover"
-                    src="https://www.bibbyskitchenat36.com/wp-content/uploads/2021/01/DSC_9104-1.jpg"
-                    title={recipe.title}
-                    alt={recipe.title}
-                  />
-                </Link>
-              </div>
-              <div className="flex flex-col justify-between rounded-b border-b border-l border-r border-gray-400 bg-white p-4 leading-normal lg:rounded-b-none lg:rounded-r lg:border-l-0 lg:border-t lg:border-gray-400">
-                <div className="mb-8">
-                  <Link href={`/${recipe.id}`}>
-                    <h3 className="mb-2 text-xl font-bold text-gray-900">
-                      {recipe.title}
-                    </h3>
-                  </Link>
-                  <p className="text-base text-gray-700">
-                    Lorem ipsum dolor sit amet, consectetur adipisicing elit.
-                    Voluptatibus quia, nulla! Maiores et perferendis eaque,
-                    exercitationem praesentium nihil.
-                  </p>
-                </div>
-                <Separator className="mb-2" />
-                <div className="flex items-center">
-                  <img
-                    className="mr-4 h-10 w-10 rounded-full"
-                    src={recipe.authorImg ? recipe.authorImg : "./user.jpg"}
-                    alt={`Avatar of ${recipe.authorName}`}
-                  />
-                  <div className="text-sm">
-                    <p className="leading-none text-gray-900">
-                      {recipe.authorName}
-                    </p>
-                    <p className="text-gray-600">
-                      {`${recipe.createdAt.getDate()} ${recipe.createdAt
-                        .toString()
-                        .slice(4, 7)}`}
-                    </p>
-                  </div>
-                </div>
-              </div>
-            </div>
+              id={recipe.id.toString()}
+              authorImg={recipe.authorImg}
+              authorName={recipe.authorName}
+              createdAt={recipe.createdAt}
+              title={recipe.title}
+            />
           );
         })}
       </div>
