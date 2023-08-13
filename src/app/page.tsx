@@ -10,7 +10,6 @@ import {
   SelectValue,
 } from "../components/ui/select";
 import Pagination from "../components/pagination";
-import { Separator } from "../components/ui/separator";
 import { ChangeEvent, useState } from "react";
 import { Label } from "../components/ui/label";
 import Card from "../components/card";
@@ -22,7 +21,7 @@ export default function Home() {
       title: "Ice cream",
       description:
         "Lorem ipsum dolor sit amet consectetur adipisicing elit. Suscipit non, eum molestias dolorem doloremque neque natus explicabo. Illo praesentium placeat et nihil doloremque perspiciatis suscipit laudantium molestiae? Animi id alias ad similique. Asperiores, ullam numquam debitis vero enim tenetur dicta voluptates at ipsam voluptatem inventore quibusdam ab. Reprehenderit, vitae nesciunt.",
-      img: "url",
+      img: "",
       category: "sweet",
       authorId: "123",
       authorName: "Cveti",
@@ -35,7 +34,7 @@ export default function Home() {
       title: "Recipe title",
       description:
         "Lorem ipsum dolor sit amet consectetur adipisicing elit. Suscipit non, eum molestias dolorem doloremque neque natus explicabo. Illo praesentium placeat et nihil doloremque perspiciatis suscipit laudantium molestiae? Animi id alias ad similique. Asperiores, ullam numquam debitis vero enim tenetur dicta voluptates at ipsam voluptatem inventore quibusdam ab. Reprehenderit, vitae nesciunt.",
-      img: "url",
+      img: "",
       category: "breakfast",
       authorId: "123",
       authorName: "John Doe",
@@ -47,7 +46,7 @@ export default function Home() {
       title: "Recipe title",
       description:
         "Lorem ipsum dolor sit amet consectetur adipisicing elit. Suscipit non, eum molestias dolorem doloremque neque natus explicabo. Illo praesentium placeat et nihil doloremque perspiciatis suscipit laudantium molestiae? Animi id alias ad similique. Asperiores, ullam numquam debitis vero enim tenetur dicta voluptates at ipsam voluptatem inventore quibusdam ab. Reprehenderit, vitae nesciunt.",
-      img: "url",
+      img: "",
       category: "breakfast",
       authorId: "123",
       authorName: "John Doe",
@@ -59,7 +58,7 @@ export default function Home() {
       title: "Recipe title",
       description:
         "Lorem ipsum dolor sit amet consectetur adipisicing elit. Suscipit non, eum molestias dolorem doloremque neque natus explicabo. Illo praesentium placeat et nihil doloremque perspiciatis suscipit laudantium molestiae? Animi id alias ad similique. Asperiores, ullam numquam debitis vero enim tenetur dicta voluptates at ipsam voluptatem inventore quibusdam ab. Reprehenderit, vitae nesciunt.",
-      img: "url",
+      img: "",
       category: "lunch",
       authorId: "123",
       authorName: "John Doe",
@@ -71,7 +70,7 @@ export default function Home() {
       title: "Recipe title",
       description:
         "Lorem ipsum dolor sit amet consectetur adipisicing elit. Suscipit non, eum molestias dolorem doloremque neque natus explicabo. Illo praesentium placeat et nihil doloremque perspiciatis suscipit laudantium molestiae? Animi id alias ad similique. Asperiores, ullam numquam debitis vero enim tenetur dicta voluptates at ipsam voluptatem inventore quibusdam ab. Reprehenderit, vitae nesciunt.",
-      img: "url",
+      img: "",
       category: "lunch",
       authorId: "123",
       authorName: "John Doe",
@@ -83,7 +82,7 @@ export default function Home() {
       title: "Recipe title",
       description:
         "Lorem ipsum dolor sit amet consectetur adipisicing elit. Suscipit non, eum molestias dolorem doloremque neque natus explicabo. Illo praesentium placeat et nihil doloremque perspiciatis suscipit laudantium molestiae? Animi id alias ad similique. Asperiores, ullam numquam debitis vero enim tenetur dicta voluptates at ipsam voluptatem inventore quibusdam ab. Reprehenderit, vitae nesciunt.",
-      img: "url",
+      img: "",
       category: "lunch",
       authorId: "123",
       authorName: "John Doe",
@@ -95,7 +94,7 @@ export default function Home() {
       title: "Recipe title",
       description:
         "Lorem ipsum dolor sit amet consectetur adipisicing elit. Suscipit non, eum molestias dolorem doloremque neque natus explicabo. Illo praesentium placeat et nihil doloremque perspiciatis suscipit laudantium molestiae? Animi id alias ad similique. Asperiores, ullam numquam debitis vero enim tenetur dicta voluptates at ipsam voluptatem inventore quibusdam ab. Reprehenderit, vitae nesciunt.",
-      img: "url",
+      img: "",
       category: "dinner",
       authorId: "123",
       authorName: "John Doe",
@@ -107,7 +106,7 @@ export default function Home() {
       title: "Recipe title",
       description:
         "Lorem ipsum dolor sit amet consectetur adipisicing elit. Suscipit non, eum molestias dolorem doloremque neque natus explicabo. Illo praesentium placeat et nihil doloremque perspiciatis suscipit laudantium molestiae? Animi id alias ad similique. Asperiores, ullam numquam debitis vero enim tenetur dicta voluptates at ipsam voluptatem inventore quibusdam ab. Reprehenderit, vitae nesciunt.",
-      img: "url",
+      img: "",
       category: "dinner",
       authorId: "123",
       authorName: "John Doe",
@@ -119,7 +118,7 @@ export default function Home() {
       title: "Recipe title",
       description:
         "Lorem ipsum dolor sit amet consectetur adipisicing elit. Suscipit non, eum molestias dolorem doloremque neque natus explicabo. Illo praesentium placeat et nihil doloremque perspiciatis suscipit laudantium molestiae? Animi id alias ad similique. Asperiores, ullam numquam debitis vero enim tenetur dicta voluptates at ipsam voluptatem inventore quibusdam ab. Reprehenderit, vitae nesciunt.",
-      img: "url",
+      img: "",
       category: "dinner",
       authorId: "123",
       authorName: "John Doe",
@@ -250,7 +249,7 @@ export default function Home() {
           </SelectContent>
         </Select>
       </div>
-      <div className="responsive-grid mt-2 justify-items-center  sm:mt-10">
+      <div className="responsive-grid mt-2 justify-items-center sm:mt-10">
         {recipes.map((recipe) => {
           return (
             <Card
@@ -260,6 +259,8 @@ export default function Home() {
               authorName={recipe.authorName}
               createdAt={recipe.createdAt}
               title={recipe.title}
+              description={recipe.description}
+              img={recipe.img}
             />
           );
         })}
