@@ -18,7 +18,7 @@ import {
 interface IProps {}
 
 const Page: FC<IProps> = ({}) => {
-  const { isSignedIn } = useUser();
+  const { isSignedIn, user } = useUser();
   const mockedCategories = ["breakfast", "lunch", "dinner", "dessert", "snack"];
 
   const [ingredients, setIngredients] = useState("");
@@ -37,15 +37,13 @@ const Page: FC<IProps> = ({}) => {
       toast.error("Please fill all fields!");
       return;
     }
-    const ingredientsArr = ingredients.split("\n");
-    const descriptionArr = description.split("\n");
-
     const recipe = {
       title,
-      ingredients: ingredientsArr,
-      description: descriptionArr,
-      image,
-      category,
+      ingredients,
+      description,
+      userId: user && user.id,
+      userName: user && user.fullName,
+      userImg: user && user.imageUrl,
     };
 
     fetch("/api/recipes/new", {

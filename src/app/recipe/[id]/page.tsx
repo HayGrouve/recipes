@@ -1,48 +1,24 @@
-import type { Metadata } from "next";
+"use client";
 import Image from "next/image";
-import { FC } from "react";
+import { FC, useEffect, useState } from "react";
+import { Recipe } from "../../../lib/types";
 
-interface IProps {}
+const Page: FC = ({ params }: any) => {
+  const [recipe, setRecipe] = useState<Recipe>({
+    id: 1,
+    title: "",
+    description: "",
+    img: "",
+    category: "",
+    userId: "",
+    ingredients: "",
+    userName: "",
+    authorImg: "",
+    createdAt: "",
+  });
 
-const mockedData = {
-  id: "1",
-  title: "Ice cream",
-  description:
-    "Lorem ipsum dolor sit amet consectetur adipisicing elit. Suscipit non, eum molestias dolorem doloremque neque natus explicabo. Illo praesentium placeat et nihil doloremque perspiciatis suscipit laudantium molestiae? Animi id alias ad similique. Asperiores, ullam numquam debitis vero enim tenetur dicta voluptates at ipsam voluptatem inventore quibusdam ab. Reprehenderit, vitae nesciunt.",
-  img: "",
-  category: "sweet",
-  authorId: "123",
-  ingredients: [
-    "salt",
-    "paper",
-    "paper",
-    "paper",
-    "paper",
-    "paper",
-    "paper",
-    "paper",
-    "paper",
-    "paper",
-    "paper",
-    "paper",
-    "paper",
-    "paper",
-    "paper",
-    "sugar",
-  ],
-  userName: "Cveti",
-  authorImg:
-    "https://img.clerk.com/eyJ0eXBlIjoicHJveHkiLCJzcmMiOiJodHRwczovL2ltYWdlcy5jbGVyay5kZXYvb2F1dGhfZ29vZ2xlL2ltZ18yUElNOUJQQXVyMWhFWVV4Qk9Wdm41dGVrWDkuanBlZyJ9",
-  createdAt: new Date(),
-};
-
-export const metadata: Metadata = {
-  title: mockedData.title,
-};
-
-const Page: FC<IProps> = ({}) => {
   const {
-    authorId,
+    userId,
     authorImg,
     ingredients,
     userName,
@@ -52,7 +28,16 @@ const Page: FC<IProps> = ({}) => {
     id,
     img,
     title,
-  } = mockedData;
+  } = recipe;
+
+  useEffect(() => {
+    fetch(`/api/recipe/${params.id}`)
+      .then((res) => res.json())
+      .then((data) => {
+        setRecipe(data);
+      });
+  }, [params.id]);
+
   return (
     <main className="mx-5 my-10 flex flex-col items-center tracking-wider">
       <h1 className="text-center text-4xl font-bold sm:text-5xl md:text-7xl ">
@@ -74,7 +59,7 @@ const Page: FC<IProps> = ({}) => {
           <div className="mx-auto max-w-md">
             <div className="mx-5 sm:mx-0">
               <ul className="list-decimal text-center">
-                {ingredients.map((item, index) => {
+                {ingredients.split(",").map((item, index) => {
                   return (
                     <li
                       className="mt-1 inline-block w-full lg:w-[50%]"

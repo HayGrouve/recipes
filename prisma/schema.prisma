@@ -15,6 +15,7 @@ model Recipe {
   description String
   userId      String
   userName    String
+  userImg     String?
   image       String?
   category    String?  @default("All")
   createdAt   DateTime @default(now())

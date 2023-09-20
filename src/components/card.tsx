@@ -8,9 +8,9 @@ interface IProps {
   title: string;
   img?: string;
   description: string;
-  authorImg: string;
+  userImg?: string;
   userName: string;
-  createdAt: Date;
+  createdAt: string;
 }
 
 const Card: FC<IProps> = ({
@@ -18,7 +18,7 @@ const Card: FC<IProps> = ({
   title,
   img,
   description,
-  authorImg,
+  userImg,
   userName,
   createdAt,
 }) => {
@@ -48,7 +48,7 @@ const Card: FC<IProps> = ({
             <div className="flex items-center">
               <Image
                 className="mr-4 h-10 w-10 rounded-full"
-                src={authorImg ? authorImg : "/user.jpg"}
+                src={userImg ? userImg : "/user.jpg"}
                 alt={`Avatar of ${userName}`}
                 width={1000}
                 height={1000}
@@ -56,7 +56,9 @@ const Card: FC<IProps> = ({
               <div className="text-sm">
                 <p className="leading-none text-gray-900">{userName}</p>
                 <p className="text-gray-600">
-                  {`${createdAt.getDate()} ${createdAt.toString().slice(4, 7)}`}
+                  {`${new Date(createdAt).getDate()} ${new Date(
+                    createdAt,
+                  ).toLocaleString("default", { month: "short" })}`}
                 </p>
               </div>
             </div>

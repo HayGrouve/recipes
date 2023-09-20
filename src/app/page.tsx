@@ -9,130 +9,20 @@ import {
   SelectValue,
 } from "../components/ui/select";
 import Pagination from "../components/pagination";
-import { ChangeEvent, useEffect, useState } from "react";
+import { ChangeEvent, useEffect, useRef, useState } from "react";
 import { Label } from "../components/ui/label";
 import Card from "../components/card";
-import { PrismaClient } from "@prisma/client";
+import { Recipe } from "../lib/types";
 
 export default function Home() {
-  const mockedRecipes = [
-    {
-      id: 1,
-      title: "Ice cream",
-      description:
-        "Lorem ipsum dolor sit amet consectetur adipisicing elit. Suscipit non, eum molestias dolorem doloremque neque natus explicabo. Illo praesentium placeat et nihil doloremque perspiciatis suscipit laudantium molestiae? Animi id alias ad similique. Asperiores, ullam numquam debitis vero enim tenetur dicta voluptates at ipsam voluptatem inventore quibusdam ab. Reprehenderit, vitae nesciunt.",
-      img: "",
-      category: "sweet",
-      authorId: "123",
-      userName: "Cveti",
-      authorImg:
-        "https://img.clerk.com/eyJ0eXBlIjoicHJveHkiLCJzcmMiOiJodHRwczovL2ltYWdlcy5jbGVyay5kZXYvb2F1dGhfZ29vZ2xlL2ltZ18yUElNOUJQQXVyMWhFWVV4Qk9Wdm41dGVrWDkuanBlZyJ9",
-      createdAt: new Date(),
-    },
-    {
-      id: 2,
-      title: "Recipe title",
-      description:
-        "Lorem ipsum dolor sit amet consectetur adipisicing elit. Suscipit non, eum molestias dolorem doloremque neque natus explicabo. Illo praesentium placeat et nihil doloremque perspiciatis suscipit laudantium molestiae? Animi id alias ad similique. Asperiores, ullam numquam debitis vero enim tenetur dicta voluptates at ipsam voluptatem inventore quibusdam ab. Reprehenderit, vitae nesciunt.",
-      img: "",
-      category: "breakfast",
-      authorId: "123",
-      userName: "John Doe",
-      authorImg: "",
-      createdAt: new Date(),
-    },
-    {
-      id: 3,
-      title: "Recipe title",
-      description:
-        "Lorem ipsum dolor sit amet consectetur adipisicing elit. Suscipit non, eum molestias dolorem doloremque neque natus explicabo. Illo praesentium placeat et nihil doloremque perspiciatis suscipit laudantium molestiae? Animi id alias ad similique. Asperiores, ullam numquam debitis vero enim tenetur dicta voluptates at ipsam voluptatem inventore quibusdam ab. Reprehenderit, vitae nesciunt.",
-      img: "",
-      category: "breakfast",
-      authorId: "123",
-      userName: "John Doe",
-      authorImg: "",
-      createdAt: new Date(),
-    },
-    {
-      id: 4,
-      title: "Recipe title",
-      description:
-        "Lorem ipsum dolor sit amet consectetur adipisicing elit. Suscipit non, eum molestias dolorem doloremque neque natus explicabo. Illo praesentium placeat et nihil doloremque perspiciatis suscipit laudantium molestiae? Animi id alias ad similique. Asperiores, ullam numquam debitis vero enim tenetur dicta voluptates at ipsam voluptatem inventore quibusdam ab. Reprehenderit, vitae nesciunt.",
-      img: "",
-      category: "lunch",
-      authorId: "123",
-      userName: "John Doe",
-      authorImg: "",
-      createdAt: new Date(),
-    },
-    {
-      id: 5,
-      title: "Recipe title",
-      description:
-        "Lorem ipsum dolor sit amet consectetur adipisicing elit. Suscipit non, eum molestias dolorem doloremque neque natus explicabo. Illo praesentium placeat et nihil doloremque perspiciatis suscipit laudantium molestiae? Animi id alias ad similique. Asperiores, ullam numquam debitis vero enim tenetur dicta voluptates at ipsam voluptatem inventore quibusdam ab. Reprehenderit, vitae nesciunt.",
-      img: "",
-      category: "lunch",
-      authorId: "123",
-      userName: "John Doe",
-      authorImg: "",
-      createdAt: new Date(),
-    },
-    {
-      id: 6,
-      title: "Recipe title",
-      description:
-        "Lorem ipsum dolor sit amet consectetur adipisicing elit. Suscipit non, eum molestias dolorem doloremque neque natus explicabo. Illo praesentium placeat et nihil doloremque perspiciatis suscipit laudantium molestiae? Animi id alias ad similique. Asperiores, ullam numquam debitis vero enim tenetur dicta voluptates at ipsam voluptatem inventore quibusdam ab. Reprehenderit, vitae nesciunt.",
-      img: "",
-      category: "lunch",
-      authorId: "123",
-      userName: "John Doe",
-      authorImg: "",
-      createdAt: new Date(),
-    },
-    {
-      id: 7,
-      title: "Recipe title",
-      description:
-        "Lorem ipsum dolor sit amet consectetur adipisicing elit. Suscipit non, eum molestias dolorem doloremque neque natus explicabo. Illo praesentium placeat et nihil doloremque perspiciatis suscipit laudantium molestiae? Animi id alias ad similique. Asperiores, ullam numquam debitis vero enim tenetur dicta voluptates at ipsam voluptatem inventore quibusdam ab. Reprehenderit, vitae nesciunt.",
-      img: "",
-      category: "dinner",
-      authorId: "123",
-      userName: "John Doe",
-      authorImg: "",
-      createdAt: new Date(),
-    },
-    {
-      id: 8,
-      title: "Recipe title",
-      description:
-        "Lorem ipsum dolor sit amet consectetur adipisicing elit. Suscipit non, eum molestias dolorem doloremque neque natus explicabo. Illo praesentium placeat et nihil doloremque perspiciatis suscipit laudantium molestiae? Animi id alias ad similique. Asperiores, ullam numquam debitis vero enim tenetur dicta voluptates at ipsam voluptatem inventore quibusdam ab. Reprehenderit, vitae nesciunt.",
-      img: "",
-      category: "dinner",
-      authorId: "123",
-      userName: "John Doe",
-      authorImg: "",
-      createdAt: new Date(),
-    },
-    {
-      id: 9,
-      title: "Recipe title",
-      description:
-        "Lorem ipsum dolor sit amet consectetur adipisicing elit. Suscipit non, eum molestias dolorem doloremque neque natus explicabo. Illo praesentium placeat et nihil doloremque perspiciatis suscipit laudantium molestiae? Animi id alias ad similique. Asperiores, ullam numquam debitis vero enim tenetur dicta voluptates at ipsam voluptatem inventore quibusdam ab. Reprehenderit, vitae nesciunt.",
-      img: "",
-      category: "dinner",
-      authorId: "123",
-      userName: "John Doe",
-      authorImg: "",
-      createdAt: new Date(),
-    },
-  ];
   const [searchValue, setSearchValue] = useState("");
-  const [recipes, setRecipes] = useState(mockedRecipes);
+  const [recipes, setRecipes] = useState<Recipe[]>([]);
+  const dbRecipes = useRef<Recipe[]>(recipes);
 
   const onSearch = (e: ChangeEvent<HTMLInputElement>) => {
     setSearchValue(e.target.value);
     setRecipes(
-      mockedRecipes.filter((recipe) =>
+      dbRecipes.current.filter((recipe) =>
         recipe.title.toLowerCase().includes(e.target.value),
       ),
     );
@@ -140,12 +30,12 @@ export default function Home() {
 
   const onSelectCategory = (category: string) => {
     if (category === "all") {
-      setRecipes(mockedRecipes);
+      setRecipes(dbRecipes.current);
       return;
     }
 
     setRecipes(
-      mockedRecipes.filter((recipe) => {
+      dbRecipes.current.filter((recipe) => {
         if (recipe.category.toLowerCase() === category.toLowerCase()) {
           return recipe;
         }
@@ -155,12 +45,12 @@ export default function Home() {
 
   const onSelectAuthor = (author: string) => {
     if (author === "all") {
-      setRecipes(mockedRecipes);
+      setRecipes(dbRecipes.current);
       return;
     }
 
     setRecipes(
-      mockedRecipes.filter((recipe) => {
+      dbRecipes.current.filter((recipe) => {
         if (recipe.userName.toLowerCase() === author.toLowerCase()) {
           return recipe;
         }
@@ -172,9 +62,9 @@ export default function Home() {
     fetch("/api/recipes")
       .then((res) => res.json())
       .then((data) => {
+        dbRecipes.current = data;
         setRecipes(data);
       });
-    console.log("🚀 ~ file: page.tsx:175 ~ useEffect ~ recipes:", recipes);
   }, []);
 
   return (
@@ -205,6 +95,7 @@ export default function Home() {
           <SelectContent>
             <SelectItem value="all">All</SelectItem>
             {recipes.map((recipe, index) => {
+              if (recipe.category.toLowerCase() === "all") return;
               if (
                 index !== 0 &&
                 recipe.category === recipes[index - 1].category
@@ -264,7 +155,7 @@ export default function Home() {
             <Card
               key={recipe.id}
               id={recipe.id.toString()}
-              authorImg={recipe.authorImg}
+              userImg={recipe.userImg}
               userName={recipe.userName}
               createdAt={recipe.createdAt}
               title={recipe.title}
