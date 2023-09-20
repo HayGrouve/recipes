@@ -1,6 +1,5 @@
 "use client";
 
-import Link from "next/link";
 import { Input } from "../components/ui/input";
 import {
   Select,
@@ -10,9 +9,10 @@ import {
   SelectValue,
 } from "../components/ui/select";
 import Pagination from "../components/pagination";
-import { ChangeEvent, useState } from "react";
+import { ChangeEvent, useEffect, useState } from "react";
 import { Label } from "../components/ui/label";
 import Card from "../components/card";
+import { PrismaClient } from "@prisma/client";
 
 export default function Home() {
   const mockedRecipes = [
@@ -24,7 +24,7 @@ export default function Home() {
       img: "",
       category: "sweet",
       authorId: "123",
-      authorName: "Cveti",
+      userName: "Cveti",
       authorImg:
         "https://img.clerk.com/eyJ0eXBlIjoicHJveHkiLCJzcmMiOiJodHRwczovL2ltYWdlcy5jbGVyay5kZXYvb2F1dGhfZ29vZ2xlL2ltZ18yUElNOUJQQXVyMWhFWVV4Qk9Wdm41dGVrWDkuanBlZyJ9",
       createdAt: new Date(),
@@ -37,7 +37,7 @@ export default function Home() {
       img: "",
       category: "breakfast",
       authorId: "123",
-      authorName: "John Doe",
+      userName: "John Doe",
       authorImg: "",
       createdAt: new Date(),
     },
@@ -49,7 +49,7 @@ export default function Home() {
       img: "",
       category: "breakfast",
       authorId: "123",
-      authorName: "John Doe",
+      userName: "John Doe",
       authorImg: "",
       createdAt: new Date(),
     },
@@ -61,7 +61,7 @@ export default function Home() {
       img: "",
       category: "lunch",
       authorId: "123",
-      authorName: "John Doe",
+      userName: "John Doe",
       authorImg: "",
       createdAt: new Date(),
     },
@@ -73,7 +73,7 @@ export default function Home() {
       img: "",
       category: "lunch",
       authorId: "123",
-      authorName: "John Doe",
+      userName: "John Doe",
       authorImg: "",
       createdAt: new Date(),
     },
@@ -85,7 +85,7 @@ export default function Home() {
       img: "",
       category: "lunch",
       authorId: "123",
-      authorName: "John Doe",
+      userName: "John Doe",
       authorImg: "",
       createdAt: new Date(),
     },
@@ -97,7 +97,7 @@ export default function Home() {
       img: "",
       category: "dinner",
       authorId: "123",
-      authorName: "John Doe",
+      userName: "John Doe",
       authorImg: "",
       createdAt: new Date(),
     },
@@ -109,7 +109,7 @@ export default function Home() {
       img: "",
       category: "dinner",
       authorId: "123",
-      authorName: "John Doe",
+      userName: "John Doe",
       authorImg: "",
       createdAt: new Date(),
     },
@@ -121,7 +121,7 @@ export default function Home() {
       img: "",
       category: "dinner",
       authorId: "123",
-      authorName: "John Doe",
+      userName: "John Doe",
       authorImg: "",
       createdAt: new Date(),
     },
@@ -161,12 +161,21 @@ export default function Home() {
 
     setRecipes(
       mockedRecipes.filter((recipe) => {
-        if (recipe.authorName.toLowerCase() === author.toLowerCase()) {
+        if (recipe.userName.toLowerCase() === author.toLowerCase()) {
           return recipe;
         }
       }),
     );
   };
+
+  useEffect(() => {
+    fetch("/api/recipes")
+      .then((res) => res.json())
+      .then((data) => {
+        setRecipes(data);
+      });
+    console.log("🚀 ~ file: page.tsx:175 ~ useEffect ~ recipes:", recipes);
+  }, []);
 
   return (
     <main className="mx-2 mt-5 sm:mx-10 lg:mt-10">
@@ -219,8 +228,8 @@ export default function Home() {
           Author:
         </Label>
         <Select
-          onValueChange={(authorName) => {
-            onSelectAuthor(authorName);
+          onValueChange={(userName) => {
+            onSelectAuthor(userName);
           }}
         >
           <SelectTrigger id="author" className="w-[150px] bg-white">
@@ -231,18 +240,18 @@ export default function Home() {
             {recipes.map((recipe, index) => {
               if (
                 index !== 0 &&
-                recipe.authorName === recipes[index - 1].authorName
+                recipe.userName === recipes[index - 1].userName
               ) {
                 return;
               }
               return (
                 <SelectItem
                   key={recipe.id}
-                  value={recipe.authorName.toLowerCase()}
+                  value={recipe.userName.toLowerCase()}
                 >
-                  {`${recipe.authorName
+                  {`${recipe.userName
                     .at(0)
-                    ?.toUpperCase()}${recipe.authorName.slice(1)}`}
+                    ?.toUpperCase()}${recipe.userName.slice(1)}`}
                 </SelectItem>
               );
             })}
@@ -256,7 +265,7 @@ export default function Home() {
               key={recipe.id}
               id={recipe.id.toString()}
               authorImg={recipe.authorImg}
-              authorName={recipe.authorName}
+              userName={recipe.userName}
               createdAt={recipe.createdAt}
               title={recipe.title}
               description={recipe.description}

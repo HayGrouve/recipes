@@ -1,3 +1,4 @@
+import type { Metadata } from "next";
 import Image from "next/image";
 import { FC } from "react";
 
@@ -29,10 +30,14 @@ const mockedData = {
     "paper",
     "sugar",
   ],
-  authorName: "Cveti",
+  userName: "Cveti",
   authorImg:
     "https://img.clerk.com/eyJ0eXBlIjoicHJveHkiLCJzcmMiOiJodHRwczovL2ltYWdlcy5jbGVyay5kZXYvb2F1dGhfZ29vZ2xlL2ltZ18yUElNOUJQQXVyMWhFWVV4Qk9Wdm41dGVrWDkuanBlZyJ9",
   createdAt: new Date(),
+};
+
+export const metadata: Metadata = {
+  title: mockedData.title,
 };
 
 const Page: FC<IProps> = ({}) => {
@@ -40,7 +45,7 @@ const Page: FC<IProps> = ({}) => {
     authorId,
     authorImg,
     ingredients,
-    authorName,
+    userName,
     category,
     createdAt,
     description,
@@ -53,9 +58,9 @@ const Page: FC<IProps> = ({}) => {
       <h1 className="text-center text-4xl font-bold sm:text-5xl md:text-7xl ">
         {title}
       </h1>
-      <div className="mt-10 grid grid-cols-1 gap-6 bg-gray-800 text-white lg:grid-cols-2">
+      <div className="mt-10 grid grid-cols-1 gap-6 rounded bg-gray-800 text-white lg:grid-cols-2">
         <Image
-          className="w-full max-w-xl"
+          className="w-full max-w-xl rounded-tl rounded-tr lg:rounded-bl lg:rounded-tr-none"
           priority={true}
           src={img ? img : "/recipe.jpg"}
           alt={title}
@@ -63,7 +68,6 @@ const Page: FC<IProps> = ({}) => {
           height={1000}
         />
         <section>
-          {/* <section className="flex flex-col items-center"> */}
           <h2 className="mb-2 mt-5 text-center text-2xl font-bold">
             Ingredients
           </h2>
@@ -87,7 +91,7 @@ const Page: FC<IProps> = ({}) => {
               <p className="text-justify">{description}</p>
               <div className="flex justify-between">
                 <p className="mb-2 mt-5 text-center">Category: {category}</p>
-                <p className="mb-2 mt-5 text-center">Author: {authorName}</p>
+                <p className="mb-2 mt-5 text-center">Author: {userName}</p>
               </div>
             </div>
           </div>

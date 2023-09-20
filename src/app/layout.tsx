@@ -1,6 +1,8 @@
 import "./globals.css";
 import type { Metadata } from "next";
 import { Roboto } from "next/font/google";
+import { ToastContainer } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 import Navbar from "../components/navbar";
 import { ClerkProvider } from "@clerk/nextjs";
 import Footer from "../components/footer";
@@ -29,6 +31,7 @@ export default function RootLayout({
           <Navbar />
           {children}
           <Footer />
+          <ToastContainer />
         </body>
       </html>
     </ClerkProvider>

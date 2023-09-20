@@ -9,7 +9,7 @@ interface IProps {
   img?: string;
   description: string;
   authorImg: string;
-  authorName: string;
+  userName: string;
   createdAt: Date;
 }
 
@@ -19,7 +19,7 @@ const Card: FC<IProps> = ({
   img,
   description,
   authorImg,
-  authorName,
+  userName,
   createdAt,
 }) => {
   return (
@@ -49,12 +49,12 @@ const Card: FC<IProps> = ({
               <Image
                 className="mr-4 h-10 w-10 rounded-full"
                 src={authorImg ? authorImg : "/user.jpg"}
-                alt={`Avatar of ${authorName}`}
+                alt={`Avatar of ${userName}`}
                 width={1000}
                 height={1000}
               />
               <div className="text-sm">
-                <p className="leading-none text-gray-900">{authorName}</p>
+                <p className="leading-none text-gray-900">{userName}</p>
                 <p className="text-gray-600">
                   {`${createdAt.getDate()} ${createdAt.toString().slice(4, 7)}`}
                 </p>

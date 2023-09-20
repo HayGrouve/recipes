@@ -4,9 +4,12 @@ import { Bars3Icon, XMarkIcon } from "@heroicons/react/24/outline";
 import Link from "next/link";
 import { Button } from "./ui/button";
 import { SignedIn, SignedOut, UserButton, useUser } from "@clerk/nextjs";
+import { usePathname } from "next/navigation";
 
 export default function Navbar() {
   const { user } = useUser();
+  const pathName = usePathname();
+
   return (
     <Disclosure as="nav" className="border-b-4 border-blue-500 bg-gray-800">
       {({ open }) => (
@@ -23,9 +26,27 @@ export default function Navbar() {
                 </div>
                 <div className="hidden sm:ml-6 sm:block">
                   <div className="flex space-x-4">
-                    {/* Current: "bg-gray-900 text-white", Default: "text-gray-300 hover:bg-gray-700 hover:text-white" */}
                     <Link href="/">
-                      <Button>Recipes</Button>
+                      <Button
+                        className={`${
+                          pathName === "/" && "bg-gray-900 text-white"
+                        }`}
+                      >
+                        Recipes
+                      </Button>
+                    </Link>
+                  </div>
+                </div>
+                <div className="hidden sm:ml-6 sm:block">
+                  <div className="flex space-x-4">
+                    <Link href="/new">
+                      <Button
+                        className={`${
+                          pathName === "/new" && "bg-gray-900 text-white"
+                        }`}
+                      >
+                        New Recipe
+                      </Button>
                     </Link>
                   </div>
                 </div>
@@ -40,10 +61,22 @@ export default function Navbar() {
                     </SignedIn>
                     <SignedOut>
                       <Link href="/login">
-                        <Button>Login</Button>
+                        <Button
+                          className={`${
+                            pathName === "/login" && "bg-gray-900 text-white"
+                          }`}
+                        >
+                          Login
+                        </Button>
                       </Link>
                       <Link href="/register">
-                        <Button>Register</Button>
+                        <Button
+                          className={`${
+                            pathName === "/register" && "bg-gray-900 text-white"
+                          }`}
+                        >
+                          Register
+                        </Button>
                       </Link>
                     </SignedOut>
                   </div>
@@ -71,7 +104,11 @@ export default function Navbar() {
             <div className="space-y-1 px-2 pb-3 pt-2">
               {/* Current: "bg-gray-900 text-white", Default: "text-gray-300 hover:bg-gray-700 hover:text-white" */}
               <Link href="/">
-                <Button>Recipes</Button>
+                <Button
+                  className={`${pathName === "/" && "bg-gray-900 text-white"}`}
+                >
+                  Recipes
+                </Button>
               </Link>
             </div>
             <div className="border-t border-gray-700 pb-3 pt-4">
@@ -96,13 +133,25 @@ export default function Navbar() {
                     className="block rounded-md px-3 py-2 text-base font-medium text-gray-400 hover:bg-gray-700 hover:text-white"
                     href="/login"
                   >
-                    <Button>Login</Button>
+                    <Button
+                      className={`${
+                        pathName === "/login" && "bg-gray-900 text-white"
+                      }`}
+                    >
+                      Login
+                    </Button>
                   </Link>
                   <Link
                     className="block rounded-md px-3 py-2 text-base font-medium text-gray-400 hover:bg-gray-700 hover:text-white"
                     href="/register"
                   >
-                    <Button>Register</Button>
+                    <Button
+                      className={`${
+                        pathName === "/register" && "bg-gray-900 text-white"
+                      }`}
+                    >
+                      Register
+                    </Button>
                   </Link>
                 </SignedOut>
               </div>
