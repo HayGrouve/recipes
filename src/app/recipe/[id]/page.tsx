@@ -4,31 +4,20 @@ import { FC, useEffect, useState } from "react";
 import { Recipe } from "../../../lib/types";
 
 const Page: FC = ({ params }: any) => {
-  const [recipe, setRecipe] = useState<Recipe>({
-    id: 1,
-    title: "",
-    description: "",
-    img: "",
-    category: "",
-    userId: "",
-    ingredients: "",
-    userName: "",
-    authorImg: "",
-    createdAt: "",
-  });
+  const [recipe, setRecipe] = useState<Recipe>();
 
   const {
     userId,
-    authorImg,
-    ingredients,
     userName,
+    userImg,
+    ingredients,
     category,
     createdAt,
     description,
     id,
     img,
     title,
-  } = recipe;
+  } = recipe || {};
 
   useEffect(() => {
     fetch(`/api/recipe/${params.id}`)
@@ -48,7 +37,7 @@ const Page: FC = ({ params }: any) => {
           className="w-full max-w-xl rounded-tl rounded-tr lg:rounded-bl lg:rounded-tr-none"
           priority={true}
           src={img ? img : "/recipe.jpg"}
-          alt={title}
+          alt={title ? title : "Recipe"}
           width={1000}
           height={1000}
         />
@@ -59,16 +48,17 @@ const Page: FC = ({ params }: any) => {
           <div className="mx-auto max-w-md">
             <div className="mx-5 sm:mx-0">
               <ul className="list-decimal text-center">
-                {ingredients.split(",").map((item, index) => {
-                  return (
-                    <li
-                      className="mt-1 inline-block w-full lg:w-[50%]"
-                      key={index}
-                    >
-                      {item}
-                    </li>
-                  );
-                })}
+                {ingredients &&
+                  ingredients.split(",").map((item, index) => {
+                    return (
+                      <li
+                        className="mt-1 inline-block w-full lg:w-[50%]"
+                        key={index}
+                      >
+                        {item}
+                      </li>
+                    );
+                  })}
               </ul>
               <h2 className="mb-2 mt-5 text-center text-2xl font-bold">
                 Description

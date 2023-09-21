@@ -1,27 +1,25 @@
 "use client";
-import { useUser } from "@clerk/nextjs";
-import { redirect } from "next/navigation";
-import { toast } from "react-toastify";
 import { FC, useEffect, useState } from "react";
-import { Button } from "../../components/ui/button";
-import { Label } from "../../components/ui/label";
-import { Input } from "../../components/ui/input";
-import { Textarea } from "../../components/ui/textarea";
+import { Recipe } from "../../../../lib/types";
+import Image from "next/image";
+import { toast } from "react-toastify";
+import { redirect } from "next/navigation";
+import { Button } from "../../../../components/ui/button";
 import {
   Select,
   SelectContent,
   SelectItem,
   SelectTrigger,
   SelectValue,
-} from "../../components/ui/select";
+} from "../../../../components/ui/select";
+import { Label } from "../../../../components/ui/label";
+import { Input } from "../../../../components/ui/input";
+import { Textarea } from "../../../../components/ui/textarea";
 
-interface IProps {}
-
-const Page: FC<IProps> = ({}) => {
-  const { isSignedIn, user } = useUser();
+const Page: FC = ({ params }: any) => {
+  const [title, setTitle] = useState("");
   const [ingredients, setIngredients] = useState("");
   const [description, setDescription] = useState("");
-  const [title, setTitle] = useState("");
   const [image, setImage] = useState("");
   const [category, setCategory] = useState("all");
   const [dbCategory, setDbCategory] =
@@ -29,9 +27,9 @@ const Page: FC<IProps> = ({}) => {
 
   const handleSubmit = () => {
     if (
+      title === "" ||
       ingredients === "" ||
       description === "" ||
-      title === "" ||
       image === ""
     ) {
       toast.error("Please fill all fields!");
@@ -43,13 +41,10 @@ const Page: FC<IProps> = ({}) => {
       description,
       category,
       image,
-      userId: user && user.id,
-      userName: user && user.fullName,
-      userImg: user && user.imageUrl,
     };
 
-    fetch("/api/recipes/new", {
-      method: "POST",
+    fetch(`/api/recipe/${params.id}/edit`, {
+      method: "PUT",
       headers: {
         "Content-Type": "application/json",
       },
@@ -71,21 +66,26 @@ const Page: FC<IProps> = ({}) => {
   };
 
   useEffect(() => {
-    if (!isSignedIn) {
-      toast.info("Please login first!");
-      redirect("/login");
-    }
+    fetch(`/api/recipe/${params.id}`)
+      .then((res) => res.json())
+      .then((data) => {
+        setTitle(data.title);
+        setIngredients(data.ingredients);
+        setDescription(data.description);
+        setImage(data.img);
+        setCategory(data.category);
+      });
     fetch("/api/categories")
       .then((res) => res.json())
       .then((data) => {
         setDbCategory(data);
       });
-  }, [isSignedIn]);
+  }, [params.id]);
 
   return (
     <main className="mx-5 my-10 flex flex-col items-center tracking-wider ">
       <h1 className="text-center text-4xl font-bold sm:text-5xl md:text-7xl ">
-        New Recipe
+        {`Edit ${title} recipe`}
       </h1>
       <div className="mt-10 grid w-full gap-5 rounded bg-gray-800 px-5 py-8 md:px-8 md:py-10 lg:w-4/6">
         <div>
@@ -96,6 +96,7 @@ const Page: FC<IProps> = ({}) => {
             required
             id="title"
             type="text"
+            defaultValue={title}
             placeholder="Delicious recipe title..."
             onChange={(e) => setTitle(e.target.value)}
           />
@@ -107,6 +108,7 @@ const Page: FC<IProps> = ({}) => {
           <Textarea
             required
             id="ingredients"
+            defaultValue={ingredients}
             onChange={(e) => setIngredients(e.target.value)}
             placeholder="Only the best ingredients..."
           />
@@ -118,6 +120,7 @@ const Page: FC<IProps> = ({}) => {
           <Textarea
             required
             id="description"
+            defaultValue={description}
             onChange={(e) => setDescription(e.target.value)}
             placeholder="Description of top notch meal..."
           />
@@ -130,6 +133,7 @@ const Page: FC<IProps> = ({}) => {
             required
             id="image"
             type="text"
+            defaultValue={image}
             placeholder="Just an image URL!"
             onChange={(e) => setImage(e.target.value)}
           />
@@ -138,7 +142,10 @@ const Page: FC<IProps> = ({}) => {
           <Label htmlFor="category" className="text-white">
             Category:
           </Label>
-          <Select onValueChange={(category) => setCategory(category)}>
+          <Select
+            defaultValue={category.toLowerCase()}
+            onValueChange={(category) => setCategory(category)}
+          >
             <SelectTrigger id="category" className="w-[150px] bg-white">
               <SelectValue placeholder="Category" />
             </SelectTrigger>
