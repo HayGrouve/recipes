@@ -11,7 +11,7 @@ export default function Navbar() {
   const pathName = usePathname();
 
   return (
-    <Disclosure as="nav" className="border-b-4 border-blue-500 bg-gray-800">
+    <Disclosure as="nav" className="border-b-4 border-yellow-500 bg-gray-900">
       {({ open }) => (
         <>
           <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">

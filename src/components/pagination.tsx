@@ -5,7 +5,7 @@ import {
 
 export default function Pagination() {
   return (
-    <nav className="mb-5 mt-5 flex items-center justify-between rounded border-t border-gray-200 bg-gray-800 px-4 pb-1">
+    <nav className="mb-5 mt-5 flex items-center justify-between rounded border-t border-gray-200 bg-gray-900 px-4 pb-1">
       <div className="-mt-px flex w-0 flex-1">
         <a
           href="#"

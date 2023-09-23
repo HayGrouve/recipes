@@ -2,9 +2,12 @@
 import Image from "next/image";
 import { FC, useEffect, useState } from "react";
 import { Recipe } from "../../../lib/types";
+import Link from "next/link";
+import { useUser } from "@clerk/nextjs";
 
 const Page: FC = ({ params }: any) => {
   const [recipe, setRecipe] = useState<Recipe>();
+  const { user } = useUser();
 
   const {
     userId,
@@ -29,8 +32,16 @@ const Page: FC = ({ params }: any) => {
 
   return (
     <main className="mx-5 my-10 flex flex-col items-center tracking-wider">
-      <h1 className="text-center text-4xl font-bold sm:text-5xl md:text-7xl ">
+      <h1 className="text-center text-4xl font-bold text-white sm:text-5xl md:text-7xl">
         {title}
+        {user && user.id === userId && (
+          <Link
+            className="ml-5 text-2xl font-bold text-yellow-500"
+            href={`/recipe/${id}/edit`}
+          >
+            Edit &#9998;
+          </Link>
+        )}
       </h1>
       <div className="mt-10 grid grid-cols-1 gap-6 rounded bg-gray-800 text-white lg:grid-cols-2">
         <Image
@@ -42,9 +53,11 @@ const Page: FC = ({ params }: any) => {
           height={1000}
         />
         <section>
-          <h2 className="mb-2 mt-5 text-center text-2xl font-bold">
-            Ingredients
-          </h2>
+          <header>
+            <h2 className="mb-2 mt-5 text-center text-2xl font-bold">
+              Ingredients
+            </h2>
+          </header>
           <div className="mx-auto max-w-md">
             <div className="mx-5 sm:mx-0">
               <ul className="list-decimal text-center">

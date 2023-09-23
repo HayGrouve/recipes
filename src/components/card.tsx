@@ -25,7 +25,7 @@ const Card: FC<IProps> = ({
   return (
     <>
       <Link href={`recipe/${id}`}>
-        <div className="max-w-sm shadow-2xl lg:flex lg:max-w-full">
+        <div className="max-w-sm shadow-2xl lg:flex">
           <div className="h-48 flex-none overflow-hidden rounded-t bg-cover text-center lg:h-auto lg:w-48 lg:rounded-t-none lg:rounded-bl lg:rounded-tl">
             <Image
               className="h-full w-full object-cover"

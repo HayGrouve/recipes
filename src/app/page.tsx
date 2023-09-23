@@ -13,8 +13,11 @@ import { ChangeEvent, useEffect, useRef, useState } from "react";
 import { Label } from "../components/ui/label";
 import Card from "../components/card";
 import { Recipe } from "../lib/types";
+import { Skeleton } from "../components/ui/skeleton";
+import CardSkeleton from "../components/card-skeleton";
 
 export default function Home() {
+  const [isLoading, setIsLoading] = useState(false);
   const [searchValue, setSearchValue] = useState("");
   const [recipes, setRecipes] = useState<Recipe[]>([]);
   const dbRecipes = useRef<Recipe[]>(recipes);
@@ -59,17 +62,19 @@ export default function Home() {
   };
 
   useEffect(() => {
+    setIsLoading(true);
     fetch("/api/recipes")
       .then((res) => res.json())
       .then((data) => {
         dbRecipes.current = data;
         setRecipes(data);
+        setIsLoading(false);
       });
   }, []);
 
   return (
     <main className="mx-2 mt-5 sm:mx-10 lg:mt-10">
-      <h1 className=" text-center text-4xl font-bold tracking-wide sm:text-7xl ">
+      <h1 className="text-center text-4xl font-bold tracking-wide text-white sm:text-7xl">
         Recipes
       </h1>
       <div className="mt-2 flex flex-col items-center justify-center gap-5 sm:mt-10 lg:flex-row">
@@ -81,7 +86,7 @@ export default function Home() {
           className="w-[150px]"
           placeholder="Search..."
         />
-        <Label htmlFor="category" className="text-lg">
+        <Label htmlFor="category" className="text-lg text-white">
           Category:
         </Label>
         <Select
@@ -115,7 +120,7 @@ export default function Home() {
             })}
           </SelectContent>
         </Select>
-        <Label htmlFor="author" className="text-lg">
+        <Label htmlFor="author" className="text-lg text-white">
           Author:
         </Label>
         <Select
@@ -149,7 +154,12 @@ export default function Home() {
           </SelectContent>
         </Select>
       </div>
+
       <div className="responsive-grid mt-2 justify-items-center sm:mt-10">
+        {isLoading &&
+          new Array(8).fill(0).map((_, index) => {
+            return <CardSkeleton key={index} />;
+          })}
         {recipes.map((recipe) => {
           return (
             <Card
