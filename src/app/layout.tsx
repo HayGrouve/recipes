@@ -26,8 +26,20 @@ export default function RootLayout({
       <html lang="en">
         <body
           suppressHydrationWarning={true}
-          className={`${roboto.className} body-background tracking-wide`}
+          className={`${roboto.className} tracking-wide`}
         >
+          <picture>
+            <source
+              srcSet="background.webp"
+              type="image/webp"
+              className="hidden"
+            />
+            <img
+              src="background.jpg"
+              alt="Hero"
+              className="fixed left-0 top-0 -z-10 h-full w-full object-cover"
+            />
+          </picture>
           <Navbar />
           {children}
           <Footer />

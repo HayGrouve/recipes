@@ -20,6 +20,7 @@ export default function Home() {
   const [isLoading, setIsLoading] = useState(false);
   const [searchValue, setSearchValue] = useState("");
   const [recipes, setRecipes] = useState<Recipe[]>([]);
+  console.log("🚀 ~ file: page.tsx:23 ~ Home ~ recipes:", recipes);
   const dbRecipes = useRef<Recipe[]>(recipes);
 
   const onSearch = (e: ChangeEvent<HTMLInputElement>) => {
@@ -103,7 +104,8 @@ export default function Home() {
               if (recipe.category.toLowerCase() === "all") return;
               if (
                 index !== 0 &&
-                recipe.category === recipes[index - 1].category
+                recipe.category.toLowerCase() ===
+                  recipes[index - 1].category.toLowerCase()
               ) {
                 return;
               }
