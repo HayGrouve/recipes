@@ -43,26 +43,49 @@ const Page: FC = ({ params }: any) => {
       image,
     };
 
-    fetch(`/api/recipe/${params.id}/edit`, {
-      method: "PUT",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify(recipe),
-    })
-      .then((res) => res.json())
-      .then((data) => {
-        if (data.error) {
-          toast.error(data.error);
-          return;
-        }
-        toast.success("Recipe created!");
-        redirect(`/recipes/${data.id}`);
+    try {
+      fetch(`/api/recipe/${params.id}/edit`, {
+        method: "PUT",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(recipe),
       })
-      .catch((err) => {
-        console.error(err);
-        toast.error("Something went wrong!");
-      });
+        .then((res) => res.json())
+        .then((data) => {
+          if (data.error) {
+            toast.error(data.error);
+            return;
+          }
+          toast.success("Recipe created!");
+          console.log("🚀 ~ file: page.tsx:63 ~ .then ~ data.id:", data.id);
+          window.location.replace(`/recipe/${data.id}`);
+          // redirect(`/recipe/${data.id}`);
+        });
+    } catch (error) {
+      console.error(error);
+      toast.error("Something went wrong!");
+    }
+  };
+
+  const handleDelete = () => {
+    try {
+      fetch(`/api/recipe/${params.id}/delete`, {
+        method: "DELETE",
+      })
+        .then((res) => res.json())
+        .then((data) => {
+          if (data.error) {
+            toast.error(data.error);
+            return;
+          }
+          toast.success("Recipe deleted!");
+          redirect("/");
+        });
+    } catch (error) {
+      console.error(error);
+      toast.error("Something went wrong!");
+    }
   };
 
   useEffect(() => {
@@ -167,6 +190,13 @@ const Page: FC = ({ params }: any) => {
         </div>
         <Button className=" w-full" variant={"outline"} onClick={handleSubmit}>
           Submit
+        </Button>
+        <Button
+          className="w-full"
+          variant={"destructive"}
+          onClick={handleDelete}
+        >
+          Delete
         </Button>
       </div>
     </main>

@@ -48,26 +48,27 @@ const Page: FC<IProps> = ({}) => {
       userImg: user && user.imageUrl,
     };
 
-    fetch("/api/recipes/new", {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify(recipe),
-    })
-      .then((res) => res.json())
-      .then((data) => {
-        if (data.error) {
-          toast.error(data.error);
-          return;
-        }
-        toast.success("Recipe created!");
-        redirect(`/recipes/${data.id}`);
+    try {
+      fetch("/api/recipes/new", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(recipe),
       })
-      .catch((err) => {
-        console.error(err);
-        toast.error("Something went wrong!");
-      });
+        .then((res) => res.json())
+        .then((data) => {
+          if (data.error) {
+            toast.error(data.error);
+            return;
+          }
+          toast.success("Recipe created!");
+          redirect(`/recipes/${data.id}`);
+        });
+    } catch (err) {
+      console.error(err);
+      toast.error("Something went wrong!");
+    }
   };
 
   useEffect(() => {
@@ -84,7 +85,7 @@ const Page: FC<IProps> = ({}) => {
 
   return (
     <main className="mx-5 my-10 flex flex-col items-center tracking-wider ">
-      <h1 className="text-center text-4xl font-bold sm:text-5xl md:text-7xl ">
+      <h1 className="text-center text-4xl font-bold text-white sm:text-5xl md:text-7xl">
         New Recipe
       </h1>
       <div className="mt-10 grid w-full gap-5 rounded bg-gray-800 px-5 py-8 md:px-8 md:py-10 lg:w-4/6">

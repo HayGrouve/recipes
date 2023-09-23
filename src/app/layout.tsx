@@ -30,12 +30,12 @@ export default function RootLayout({
         >
           <picture>
             <source
-              srcSet="background.webp"
+              srcSet="./background.webp"
               type="image/webp"
               className="hidden"
             />
             <img
-              src="background.jpg"
+              src="./background.jpg"
               alt="Hero"
               className="fixed left-0 top-0 -z-10 h-full w-full object-cover"
             />

@@ -13,14 +13,12 @@ import { ChangeEvent, useEffect, useRef, useState } from "react";
 import { Label } from "../components/ui/label";
 import Card from "../components/card";
 import { Recipe } from "../lib/types";
-import { Skeleton } from "../components/ui/skeleton";
 import CardSkeleton from "../components/card-skeleton";
 
 export default function Home() {
   const [isLoading, setIsLoading] = useState(false);
   const [searchValue, setSearchValue] = useState("");
   const [recipes, setRecipes] = useState<Recipe[]>([]);
-  console.log("🚀 ~ file: page.tsx:23 ~ Home ~ recipes:", recipes);
   const dbRecipes = useRef<Recipe[]>(recipes);
 
   const onSearch = (e: ChangeEvent<HTMLInputElement>) => {
