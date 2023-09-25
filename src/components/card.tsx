@@ -41,7 +41,9 @@ const Card: FC<IProps> = ({
             <div className="mb-8">
               <h3 className="mb-2 text-xl font-bold text-gray-900">{title}</h3>
               <p
-                dangerouslySetInnerHTML={{ __html: description }}
+                dangerouslySetInnerHTML={{
+                  __html: description.slice(0, 100) + "...",
+                }}
                 className="text-base text-gray-700"
               ></p>
             </div>

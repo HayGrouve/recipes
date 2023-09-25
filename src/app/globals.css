@@ -8,11 +8,12 @@
   grid-gap: 1.5rem;
 }
 
-/* .body-background{
-  background-image: url("../../public/img.webp");
-  background-size: cover;
-  height: 100dvh;
-} */
+@media screen and (min-width: 768px) {
+  ul {
+      column-count: 2; /* Display list items in two columns */
+      column-gap: 20px; /* Add some spacing between columns */
+  }
+}
 
 @layer base {
   :root {

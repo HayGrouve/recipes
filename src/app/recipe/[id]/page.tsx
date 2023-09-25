@@ -43,9 +43,9 @@ const Page: FC = ({ params }: any) => {
           </Link>
         )}
       </h1>
-      <div className="mt-10 grid grid-cols-1 gap-6 rounded bg-gray-800 text-white lg:grid-cols-2">
+      <div className="mt-10 grid grid-cols-1 gap-6 rounded bg-gray-800 text-white">
         <Image
-          className="w-full max-w-xl rounded-tl rounded-tr lg:rounded-bl lg:rounded-tr-none"
+          className="w-full max-w-4xl rounded-tl rounded-tr lg:rounded-bl lg:rounded-tr-none"
           priority={true}
           src={img ? img : "/recipe.jpg"}
           alt={title ? title : "Recipe"}
@@ -58,14 +58,14 @@ const Page: FC = ({ params }: any) => {
               Ingredients
             </h2>
           </header>
-          <div className="mx-auto max-w-md">
+          <div className="mx-auto max-w-2xl">
             <div className="mx-5 sm:mx-0">
-              <p
+              <div
                 className="text-center"
                 dangerouslySetInnerHTML={{
                   __html: ingredients ? ingredients : "",
                 }}
-              ></p>
+              ></div>
               <h2 className="mb-2 mt-5 text-center text-2xl font-bold">
                 Description
               </h2>

@@ -11,12 +11,12 @@ generator client {
 model Recipe {
   id          Int      @id @default(autoincrement())
   title       String   @unique
-  ingredients String
-  description String
+  ingredients String   @db.VarChar(1000)
+  description String   @db.VarChar(10000)
   userId      String
   userName    String
-  userImg     String?
-  image       String?
+  userImg     String?  @db.VarChar(2000)
+  image       String?  @db.VarChar(2000)
   category    String?  @default("All")
   createdAt   DateTime @default(now())
   updatedAt   DateTime @updatedAt

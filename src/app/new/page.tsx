@@ -50,7 +50,7 @@ const Page: FC<IProps> = ({}) => {
     };
 
     try {
-      fetch("/api/recipes/new", {
+      fetch("/api/recipe/new", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",

@@ -1,4 +1,4 @@
-import { prisma } from "../../prismaClient";
+import { prisma } from "../../../prismaClient";
 
 export const POST = async (req: Request) => {
   const body = await req.json();
