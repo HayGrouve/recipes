@@ -60,23 +60,21 @@ const Page: FC = ({ params }: any) => {
           </header>
           <div className="mx-auto max-w-md">
             <div className="mx-5 sm:mx-0">
-              <ul className="list-decimal text-center">
-                {ingredients &&
-                  ingredients.split(",").map((item, index) => {
-                    return (
-                      <li
-                        className="mt-1 inline-block w-full lg:w-[50%]"
-                        key={index}
-                      >
-                        {item}
-                      </li>
-                    );
-                  })}
-              </ul>
+              <p
+                className="text-center"
+                dangerouslySetInnerHTML={{
+                  __html: ingredients ? ingredients : "",
+                }}
+              ></p>
               <h2 className="mb-2 mt-5 text-center text-2xl font-bold">
                 Description
               </h2>
-              <p className="text-justify">{description}</p>
+              <p
+                dangerouslySetInnerHTML={{
+                  __html: description ? description : "",
+                }}
+                className="text-justify"
+              ></p>
               <div className="flex justify-between">
                 <p className="mb-2 mt-5 text-center">Category: {category}</p>
                 <p className="mb-2 mt-5 text-center">Author: {userName}</p>

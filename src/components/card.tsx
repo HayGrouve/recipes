@@ -40,9 +40,10 @@ const Card: FC<IProps> = ({
           <div className="flex flex-col justify-between rounded-b border-b border-l border-r border-gray-400 bg-white p-4 leading-normal lg:rounded-b-none lg:rounded-r lg:border-l-0 lg:border-t lg:border-gray-400">
             <div className="mb-8">
               <h3 className="mb-2 text-xl font-bold text-gray-900">{title}</h3>
-              <p className="text-base text-gray-700">
-                {description.slice(0, 120)}...
-              </p>
+              <p
+                dangerouslySetInnerHTML={{ __html: description }}
+                className="text-base text-gray-700"
+              ></p>
             </div>
             <Separator className="mb-2" />
             <div className="flex items-center">

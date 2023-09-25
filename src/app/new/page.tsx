@@ -7,6 +7,7 @@ import { Button } from "../../components/ui/button";
 import { Label } from "../../components/ui/label";
 import { Input } from "../../components/ui/input";
 import { Textarea } from "../../components/ui/textarea";
+import { RichTextEditor } from "@mantine/rte";
 import {
   Select,
   SelectContent,
@@ -105,10 +106,10 @@ const Page: FC<IProps> = ({}) => {
           <Label className="text-white" htmlFor="ingredients">
             Ingredients
           </Label>
-          <Textarea
-            required
+          <RichTextEditor
             id="ingredients"
-            onChange={(e) => setIngredients(e.target.value)}
+            value={ingredients}
+            onChange={setIngredients}
             placeholder="Only the best ingredients..."
           />
         </div>
@@ -116,10 +117,10 @@ const Page: FC<IProps> = ({}) => {
           <Label className="text-white" htmlFor="description">
             Description
           </Label>
-          <Textarea
-            required
+          <RichTextEditor
             id="description"
-            onChange={(e) => setDescription(e.target.value)}
+            value={description}
+            onChange={setDescription}
             placeholder="Description of top notch meal..."
           />
         </div>
