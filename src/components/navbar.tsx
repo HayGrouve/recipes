@@ -18,11 +18,7 @@ export default function Navbar() {
             <div className="flex h-16 items-center justify-between">
               <div className="flex items-center">
                 <div className="flex-shrink-0">
-                  <img
-                    className="h-8 w-auto"
-                    src="https://tailwindui.com/img/logos/mark.svg?color=indigo&shade=500"
-                    alt="Your Company"
-                  />
+                  <Link href="/">Logo</Link>
                 </div>
                 <div className="hidden sm:ml-6 sm:block">
                   <div className="flex space-x-4">
@@ -41,9 +37,10 @@ export default function Navbar() {
                   <div className="flex space-x-4">
                     <Link href="/new">
                       <Button
+                        variant={"green"}
                         className={`${
                           pathName === "/new" && "bg-gray-900 text-white"
-                        }`}
+                        } `}
                       >
                         New Recipe
                       </Button>
