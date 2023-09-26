@@ -1,9 +1,7 @@
 "use client";
 import { FC, useEffect, useState } from "react";
-import { Recipe } from "../../../../lib/types";
-import Image from "next/image";
+import { useRouter } from "next/navigation";
 import { toast } from "react-toastify";
-import { redirect } from "next/navigation";
 import { Button } from "../../../../components/ui/button";
 import {
   Select,
@@ -14,9 +12,10 @@ import {
 } from "../../../../components/ui/select";
 import { Label } from "../../../../components/ui/label";
 import { Input } from "../../../../components/ui/input";
-import { Textarea } from "../../../../components/ui/textarea";
+import RichTextEditor from "@mantine/rte";
 
 const Page: FC = ({ params }: any) => {
+  const router = useRouter();
   const [title, setTitle] = useState("");
   const [ingredients, setIngredients] = useState("");
   const [description, setDescription] = useState("");
@@ -26,12 +25,7 @@ const Page: FC = ({ params }: any) => {
     useState<{ id: number; name: string }[]>();
 
   const handleSubmit = () => {
-    if (
-      title === "" ||
-      ingredients === "" ||
-      description === "" ||
-      image === ""
-    ) {
+    if (title === "" || ingredients === "" || description === "") {
       toast.error("Please fill all fields!");
       return;
     }
@@ -57,10 +51,8 @@ const Page: FC = ({ params }: any) => {
             toast.error(data.error);
             return;
           }
-          toast.success("Recipe created!");
-          console.log("🚀 ~ file: page.tsx:63 ~ .then ~ data.id:", data.id);
-          window.location.replace(`/recipe/${data.id}`);
-          // redirect(`/recipe/${data.id}`);
+          toast.success("Recipe edited!");
+          router.push(`/recipe/${data.id}`);
         });
     } catch (error) {
       console.error(error);
@@ -69,6 +61,8 @@ const Page: FC = ({ params }: any) => {
   };
 
   const handleDelete = () => {
+    const confirmed = confirm("Are you sure you want to delete this recipe?");
+    if (!confirmed) return;
     try {
       fetch(`/api/recipe/${params.id}/delete`, {
         method: "DELETE",
@@ -80,7 +74,7 @@ const Page: FC = ({ params }: any) => {
             return;
           }
           toast.success("Recipe deleted!");
-          redirect("/");
+          router.push("/");
         });
     } catch (error) {
       console.error(error);
@@ -128,11 +122,10 @@ const Page: FC = ({ params }: any) => {
           <Label className="text-white" htmlFor="ingredients">
             Ingredients
           </Label>
-          <Textarea
-            required
+          <RichTextEditor
             id="ingredients"
-            defaultValue={ingredients}
-            onChange={(e) => setIngredients(e.target.value)}
+            value={ingredients}
+            onChange={setIngredients}
             placeholder="Only the best ingredients..."
           />
         </div>
@@ -140,11 +133,10 @@ const Page: FC = ({ params }: any) => {
           <Label className="text-white" htmlFor="description">
             Description
           </Label>
-          <Textarea
-            required
+          <RichTextEditor
             id="description"
-            defaultValue={description}
-            onChange={(e) => setDescription(e.target.value)}
+            value={description}
+            onChange={setDescription}
             placeholder="Description of top notch meal..."
           />
         </div>

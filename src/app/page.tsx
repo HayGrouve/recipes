@@ -98,12 +98,12 @@ export default function Home() {
           </SelectTrigger>
           <SelectContent>
             <SelectItem value="all">All</SelectItem>
-            {recipes.map((recipe, index) => {
+            {dbRecipes.current.map((recipe, index) => {
               if (recipe.category.toLowerCase() === "all") return;
               if (
                 index !== 0 &&
                 recipe.category.toLowerCase() ===
-                  recipes[index - 1].category.toLowerCase()
+                  dbRecipes.current[index - 1].category.toLowerCase()
               ) {
                 return;
               }
@@ -133,10 +133,10 @@ export default function Home() {
           </SelectTrigger>
           <SelectContent>
             <SelectItem value="all">All</SelectItem>
-            {recipes.map((recipe, index) => {
+            {dbRecipes.current.map((recipe, index) => {
               if (
                 index !== 0 &&
-                recipe.userName === recipes[index - 1].userName
+                recipe.userName === dbRecipes.current[index - 1].userName
               ) {
                 return;
               }
@@ -170,12 +170,12 @@ export default function Home() {
               createdAt={recipe.createdAt}
               title={recipe.title}
               description={recipe.description}
-              img={recipe.img}
+              image={recipe.image}
             />
           );
         })}
       </div>
-      <Pagination />
+      {/* <Pagination /> */}
     </main>
   );
 }

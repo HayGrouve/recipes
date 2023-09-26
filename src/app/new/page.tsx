@@ -1,12 +1,11 @@
 "use client";
 import { useUser } from "@clerk/nextjs";
-import { redirect } from "next/navigation";
+import { useRouter } from "next/navigation";
 import { toast } from "react-toastify";
 import { FC, useEffect, useState } from "react";
 import { Button } from "../../components/ui/button";
 import { Label } from "../../components/ui/label";
 import { Input } from "../../components/ui/input";
-import { Textarea } from "../../components/ui/textarea";
 import { RichTextEditor } from "@mantine/rte";
 import {
   Select,
@@ -19,6 +18,7 @@ import {
 interface IProps {}
 
 const Page: FC<IProps> = ({}) => {
+  const router = useRouter();
   const { isSignedIn, user } = useUser();
   const [ingredients, setIngredients] = useState("");
   const [description, setDescription] = useState("");
@@ -29,12 +29,7 @@ const Page: FC<IProps> = ({}) => {
     useState<{ id: number; name: string }[]>();
 
   const handleSubmit = () => {
-    if (
-      ingredients === "" ||
-      description === "" ||
-      title === "" ||
-      image === ""
-    ) {
+    if (ingredients === "" || description === "" || title === "") {
       toast.error("Please fill all fields!");
       return;
     }
@@ -64,7 +59,7 @@ const Page: FC<IProps> = ({}) => {
             return;
           }
           toast.success("Recipe created!");
-          redirect(`/recipes/${data.id}`);
+          router.push(`/recipe/${data.id}`);
         });
     } catch (err) {
       console.error(err);
@@ -75,14 +70,14 @@ const Page: FC<IProps> = ({}) => {
   useEffect(() => {
     if (!isSignedIn) {
       toast.info("Please login first!");
-      redirect("/login");
+      router.push("/login");
     }
     fetch("/api/categories")
       .then((res) => res.json())
       .then((data) => {
         setDbCategory(data);
       });
-  }, [isSignedIn]);
+  }, [isSignedIn, router]);
 
   return (
     <main className="mx-5 my-10 flex flex-col items-center tracking-wider ">

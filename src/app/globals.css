@@ -8,10 +8,14 @@
   grid-gap: 1.5rem;
 }
 
+.card-aspect{
+  aspect-ratio: 1.5/1;
+}
+
 @media screen and (min-width: 768px) {
   ul {
-      column-count: 2; /* Display list items in two columns */
-      column-gap: 20px; /* Add some spacing between columns */
+    column-count: 2;
+    column-gap: 5rem;
   }
 }
 
@@ -82,11 +86,30 @@
 }
 
 @layer base {
+  .ingredients ul,
+  .ingredients ol {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    grid-gap: .7rem;
+    word-wrap: break-word;
+    text-align: center;
+    list-style-type: none;
+    margin-left: unset
+  }
+  .ingredients ul li,
+  .ingredients ol li {
+    -webkit-box-shadow: 0px 1px 0px 0px rgba(227, 227, 227, 1);
+    -moz-box-shadow: 0px 1px 0px 0px rgba(227, 227, 227, 1);
+    box-shadow: 0px 1px 0px 0px rgba(227, 227, 227, 1);
+  }
+
   ul {
     list-style-type: disc;
+    margin-left: 20px
   }
   ol {
     list-style-type: decimal;
+    margin-left: 20px
   }
   * {
     @apply border-border;

@@ -18,9 +18,10 @@ const Page: FC = ({ params }: any) => {
     createdAt,
     description,
     id,
-    img,
+    image,
     title,
   } = recipe || {};
+  console.log("🚀 ~ file: page.tsx:24 ~ recipe:", recipe);
 
   useEffect(() => {
     fetch(`/api/recipe/${params.id}`)
@@ -43,11 +44,11 @@ const Page: FC = ({ params }: any) => {
           </Link>
         )}
       </h1>
-      <div className="mt-10 grid grid-cols-1 gap-6 rounded bg-gray-800 text-white">
+      <div className="mt-10 grid max-w-4xl grid-cols-1 gap-6 rounded bg-gray-800 text-white">
         <Image
-          className="w-full max-w-4xl rounded-tl rounded-tr lg:rounded-bl lg:rounded-tr-none"
+          className="aspect-video w-full  rounded-tl rounded-tr object-cover lg:rounded-bl lg:rounded-tr-none"
           priority={true}
-          src={img ? img : "/recipe.jpg"}
+          src={image ? image : "/recipe.jpg"}
           alt={title ? title : "Recipe"}
           width={1000}
           height={1000}
@@ -58,10 +59,10 @@ const Page: FC = ({ params }: any) => {
               Ingredients
             </h2>
           </header>
-          <div className="mx-auto max-w-2xl">
-            <div className="mx-5 sm:mx-0">
+          <div>
+            <div className="mx-5 sm:mx-16">
               <div
-                className="text-center"
+                className="ingredients mb-5"
                 dangerouslySetInnerHTML={{
                   __html: ingredients ? ingredients : "",
                 }}
@@ -76,7 +77,12 @@ const Page: FC = ({ params }: any) => {
                 className="text-justify"
               ></p>
               <div className="flex justify-between">
-                <p className="mb-2 mt-5 text-center">Category: {category}</p>
+                <p className="mb-2 mt-5 text-center">
+                  Category:{" "}
+                  {`${category?.slice(0, 1).toUpperCase()}${category?.slice(
+                    1,
+                  )}`}
+                </p>
                 <p className="mb-2 mt-5 text-center">Author: {userName}</p>
               </div>
             </div>

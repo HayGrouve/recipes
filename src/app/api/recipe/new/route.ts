@@ -1,4 +1,4 @@
-import { prisma } from "../../../prismaClient";
+import { prisma } from "../../prismaClient";
 
 export const POST = async (req: Request) => {
   const body = await req.json();
@@ -10,6 +10,8 @@ export const POST = async (req: Request) => {
       userId: body.userId,
       userName: body.userName,
       userImg: body.userImg,
+      category: body.category,
+      image: body.image,
     },
   });
   return new Response(JSON.stringify(recipe));
