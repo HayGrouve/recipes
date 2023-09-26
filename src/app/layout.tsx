@@ -36,9 +36,11 @@ export default function RootLayout({
             width={1000}
             height={1000}
           />
-          <Navbar />
-          {children}
-          <Footer />
+          <div className="flex h-screen flex-col content-between justify-between">
+            <Navbar />
+            {children}
+            <Footer />
+          </div>
           <ToastContainer />
         </body>
       </html>
