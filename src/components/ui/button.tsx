@@ -12,7 +12,7 @@ const buttonVariants = cva(
         default:
           "rounded-md px-3 py-2 text-sm font-medium text-gray-300 hover:bg-gray-700 hover:text-white",
         green:
-          "rounded-md px-3 py-2 text-sm font-medium text-gray-300 bg-green-700 hover:bg-green-800 hover:text-white",
+          "rounded-md px-3 py-2 text-sm font-medium text-gray-900 bg-yellow-500 hover:bg-yellow-400 hover:text-gray-900",
         destructive:
           "bg-destructive text-destructive-foreground hover:bg-destructive/90",
         cardBtn:

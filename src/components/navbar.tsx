@@ -5,6 +5,8 @@ import Link from "next/link";
 import { Button } from "./ui/button";
 import { SignedIn, SignedOut, UserButton, useUser } from "@clerk/nextjs";
 import { usePathname } from "next/navigation";
+import { ReactSVG } from "react-svg";
+import Image from "next/image";
 
 export default function Navbar() {
   const { user } = useUser();
@@ -17,16 +19,18 @@ export default function Navbar() {
           <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
             <div className="flex h-16 items-center justify-between">
               <div className="flex items-center">
-                <div className="flex-shrink-0">
-                  <Link href="/">Logo</Link>
+                <div className="hidden sm:ml-6 sm:block">
+                  <Link href="/">
+                    <ReactSVG src="/logo.svg" />
+                  </Link>
                 </div>
                 <div className="hidden sm:ml-6 sm:block">
                   <div className="flex space-x-4">
                     <Link href="/">
                       <Button
                         className={`${
-                          pathName === "/" && "bg-gray-900 text-white"
-                        }`}
+                          pathName === "/" && "bg-gray-600 text-white"
+                        } `}
                       >
                         Recipes
                       </Button>
@@ -39,7 +43,7 @@ export default function Navbar() {
                       <Button
                         variant={"green"}
                         className={`${
-                          pathName === "/new" && "bg-gray-900 text-white"
+                          pathName === "/new" && "bg-green-600 text-gray-800"
                         } `}
                       >
                         New Recipe
@@ -60,7 +64,7 @@ export default function Navbar() {
                       <Link href="/login">
                         <Button
                           className={`${
-                            pathName === "/login" && "bg-gray-900 text-white"
+                            pathName === "/login" && "bg-gray-600 text-white"
                           }`}
                         >
                           Login
@@ -69,7 +73,7 @@ export default function Navbar() {
                       <Link href="/register">
                         <Button
                           className={`${
-                            pathName === "/register" && "bg-gray-900 text-white"
+                            pathName === "/register" && "bg-gray-600 text-white"
                           }`}
                         >
                           Register
@@ -97,15 +101,26 @@ export default function Navbar() {
             </div>
           </div>
 
-          <Disclosure.Panel className="sm:hidden">
-            <div className="space-y-1 px-2 pb-3 pt-2">
-              {/* Current: "bg-gray-900 text-white", Default: "text-gray-300 hover:bg-gray-700 hover:text-white" */}
+          <Disclosure.Panel className="text-center sm:hidden">
+            <div className="flex items-center justify-center space-y-1 px-2 pb-3 pt-2">
               <Link href="/">
-                <Button
-                  className={`${pathName === "/" && "bg-gray-900 text-white"}`}
-                >
-                  Recipes
-                </Button>
+                <ReactSVG src="/logo.svg" />
+              </Link>
+            </div>
+            <div className="space-y-1 px-2 pb-3 pt-2">
+              <Link
+                className="block rounded-md px-3 py-2 text-base font-medium text-gray-400 hover:bg-gray-700 hover:text-white"
+                href="/"
+              >
+                <Button>Recipes</Button>
+              </Link>
+            </div>
+            <div className="space-y-1 px-2 pb-3 pt-2">
+              <Link
+                className="block rounded-md px-3 py-2 text-base font-medium text-gray-400 hover:bg-gray-700 hover:text-white"
+                href="/new"
+              >
+                <Button variant={"green"}>New Recipe</Button>
               </Link>
             </div>
             <div className="border-t border-gray-700 pb-3 pt-4">
@@ -130,25 +145,13 @@ export default function Navbar() {
                     className="block rounded-md px-3 py-2 text-base font-medium text-gray-400 hover:bg-gray-700 hover:text-white"
                     href="/login"
                   >
-                    <Button
-                      className={`${
-                        pathName === "/login" && "bg-gray-900 text-white"
-                      }`}
-                    >
-                      Login
-                    </Button>
+                    <Button>Login</Button>
                   </Link>
                   <Link
                     className="block rounded-md px-3 py-2 text-base font-medium text-gray-400 hover:bg-gray-700 hover:text-white"
                     href="/register"
                   >
-                    <Button
-                      className={`${
-                        pathName === "/register" && "bg-gray-900 text-white"
-                      }`}
-                    >
-                      Register
-                    </Button>
+                    <Button>Register</Button>
                   </Link>
                 </SignedOut>
               </div>
