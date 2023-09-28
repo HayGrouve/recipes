@@ -40,7 +40,7 @@ const Page: FC<IProps> = ({}) => {
       category,
       image,
       userId: user && user.id,
-      userName: user && user.fullName,
+      userName: user && user.username,
       userImg: user && user.imageUrl,
     };
 

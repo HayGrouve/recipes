@@ -131,7 +131,7 @@ export default function Navbar() {
                   </div>
                   <div className="ml-3">
                     <div className="text-base font-medium text-white">
-                      {user?.fullName}
+                      {user?.username}
                     </div>
                     <div className="text-sm font-medium text-gray-400">
                       {user?.primaryEmailAddress?.emailAddress}
