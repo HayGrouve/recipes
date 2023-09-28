@@ -19,7 +19,7 @@ export default function Navbar() {
           <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
             <div className="flex h-16 items-center justify-between">
               <div className="flex items-center">
-                <div className="hidden sm:ml-6 sm:block">
+                <div className="sm:ml-6">
                   <Link href="/">
                     <ReactSVG src="/logo.svg" />
                   </Link>
@@ -41,9 +41,9 @@ export default function Navbar() {
                   <div className="flex space-x-4">
                     <Link href="/new">
                       <Button
-                        variant={"green"}
+                        variant={"yellow"}
                         className={`${
-                          pathName === "/new" && "bg-green-600 text-gray-800"
+                          pathName === "/new" && "bg-yellow-600 text-gray-800"
                         } `}
                       >
                         New Recipe
@@ -102,11 +102,6 @@ export default function Navbar() {
           </div>
 
           <Disclosure.Panel className="text-center sm:hidden">
-            <div className="flex items-center justify-center space-y-1 px-2 pb-3 pt-2">
-              <Link href="/">
-                <ReactSVG src="/logo.svg" />
-              </Link>
-            </div>
             <div className="space-y-1 px-2 pb-3 pt-2">
               <Link
                 className="block rounded-md px-3 py-2 text-base font-medium text-gray-400 hover:bg-gray-700 hover:text-white"
@@ -120,7 +115,7 @@ export default function Navbar() {
                 className="block rounded-md px-3 py-2 text-base font-medium text-gray-400 hover:bg-gray-700 hover:text-white"
                 href="/new"
               >
-                <Button variant={"green"}>New Recipe</Button>
+                <Button variant={"yellow"}>New Recipe</Button>
               </Link>
             </div>
             <div className="border-t border-gray-700 pb-3 pt-4">

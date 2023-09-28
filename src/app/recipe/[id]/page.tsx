@@ -4,6 +4,7 @@ import { FC, useEffect, useState } from "react";
 import { Recipe } from "../../../lib/types";
 import Link from "next/link";
 import { useUser } from "@clerk/nextjs";
+import { Separator } from "../../../components/ui/separator";
 
 const Page: FC = ({ params }: any) => {
   const [recipe, setRecipe] = useState<Recipe>();
@@ -32,8 +33,9 @@ const Page: FC = ({ params }: any) => {
 
   return (
     <main className="mx-5 my-10 flex flex-col items-center tracking-wider">
-      <h1 className="text-center text-4xl font-bold text-white sm:text-5xl md:text-7xl">
+      <h1 className="text-center text-4xl font-bold text-gray-100 sm:text-5xl md:text-7xl">
         {title}
+
         {user && user.id === userId && (
           <Link
             className="ml-5 text-2xl font-bold text-yellow-500"
@@ -43,6 +45,14 @@ const Page: FC = ({ params }: any) => {
           </Link>
         )}
       </h1>
+      <div className="mb-8 flex h-full flex-col items-center justify-center text-center text-gray-200">
+        <p className="font-bold ">
+          <span className="text-xs ">Category:</span>
+          {` ${category && category.slice(0, 1).toUpperCase()}${
+            category && category.slice(1)
+          }`}
+        </p>
+      </div>
       <div className="mt-10 grid max-w-4xl grid-cols-1 gap-6 rounded bg-gray-800 text-white">
         <img
           className="aspect-video w-full  rounded-tl rounded-tr object-cover lg:rounded-bl lg:rounded-tr-none"
@@ -70,16 +80,18 @@ const Page: FC = ({ params }: any) => {
                 dangerouslySetInnerHTML={{
                   __html: description ? description : "",
                 }}
-                className="text-justify"
+                className="pb-4 text-justify"
               ></p>
-              <div className="flex justify-between">
-                <p className="mb-2 mt-5 text-center">
-                  Category:{" "}
-                  {`${category?.slice(0, 1).toUpperCase()}${category?.slice(
-                    1,
-                  )}`}
-                </p>
-                <p className="mb-2 mt-5 text-center">Author: {userName}</p>
+              <Separator className="bg-gray-400" />
+              <div className="flex items-center justify-center">
+                <Image
+                  className="mr-4 h-10 w-10 rounded-full"
+                  src={userImg ? userImg : "/user.jpg"}
+                  alt={`Avatar of ${userName}`}
+                  width={1000}
+                  height={1000}
+                />
+                <p className="py-5 text-center">{userName}</p>
               </div>
             </div>
           </div>

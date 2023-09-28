@@ -8,6 +8,7 @@ interface IProps {
   title: string;
   image?: string;
   description: string;
+  category: string;
   userImg?: string;
   userName: string;
   createdAt: string;
@@ -18,13 +19,14 @@ const Card: FC<IProps> = ({
   title,
   image,
   description,
+  category,
   userImg,
   userName,
   createdAt,
 }) => {
   return (
     <Link href={`recipe/${id}`}>
-      <div className="card-aspect w-64 max-w-sm shadow-2xl md:w-80 lg:flex lg:w-auto">
+      <div className="card-aspect h-full w-64 max-w-sm shadow-2xl md:w-80 lg:flex lg:w-auto">
         <div className="h-48 flex-none overflow-hidden rounded-t bg-cover text-center lg:h-auto lg:w-48 lg:rounded-t-none lg:rounded-bl lg:rounded-tl">
           <img
             className="h-full w-full object-cover"
@@ -33,14 +35,12 @@ const Card: FC<IProps> = ({
           />
         </div>
         <div className="flex flex-col justify-between rounded-b border-b border-l border-r border-gray-400 bg-white p-4 leading-normal lg:rounded-b-none lg:rounded-r lg:border-l-0 lg:border-t lg:border-gray-400">
-          <div className="mb-8">
-            <h3 className="mb-2 text-xl font-bold text-gray-900">{title}</h3>
-            <p
-              dangerouslySetInnerHTML={{
-                __html: description.slice(0, 50) + "...",
-              }}
-              className="text-base text-gray-700"
-            ></p>
+          <div className="mb-8 flex h-full flex-col items-center justify-center text-center">
+            <h3 className="mb-2 text-2xl font-bold text-gray-900">{title}</h3>
+            <p className="text-xs text-gray-600">Category:</p>
+            <p className="font-bold text-gray-500">
+              {`${category.slice(0, 1).toUpperCase()}${category.slice(1)}`}
+            </p>
           </div>
           <Separator className="mb-2" />
           <div className="flex items-center">
