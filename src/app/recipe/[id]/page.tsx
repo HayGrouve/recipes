@@ -45,13 +45,10 @@ const Page: FC = ({ params }: any) => {
         )}
       </h1>
       <div className="mt-10 grid max-w-4xl grid-cols-1 gap-6 rounded bg-gray-800 text-white">
-        <Image
+        <img
           className="aspect-video w-full  rounded-tl rounded-tr object-cover lg:rounded-bl lg:rounded-tr-none"
-          priority={true}
           src={image ? image : "/recipe.jpg"}
           alt={title ? title : "Recipe"}
-          width={1000}
-          height={1000}
         />
         <section>
           <header>
