@@ -32,6 +32,7 @@ export default function RootLayout({
           <Image
             src="/background.webp"
             alt="Hero"
+            priority={true}
             className="fixed left-0 top-0 -z-10 h-full w-full object-cover"
             width={1000}
             height={1000}

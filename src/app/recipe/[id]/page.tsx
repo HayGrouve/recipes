@@ -21,7 +21,6 @@ const Page: FC = ({ params }: any) => {
     image,
     title,
   } = recipe || {};
-  console.log("🚀 ~ file: page.tsx:24 ~ recipe:", recipe);
 
   useEffect(() => {
     fetch(`/api/recipe/${params.id}`)
