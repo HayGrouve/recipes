@@ -89,7 +89,7 @@ const Page: FC = ({ params }: any) => {
         setTitle(data.title);
         setIngredients(data.ingredients);
         setDescription(data.description);
-        setImage(data.img);
+        setImage(data.image);
         setCategory(data.category);
       });
     fetch("/api/categories")
@@ -158,7 +158,7 @@ const Page: FC = ({ params }: any) => {
             Category:
           </Label>
           <Select
-            defaultValue={category.toLowerCase()}
+            value={category.toLowerCase()}
             onValueChange={(category) => setCategory(category)}
           >
             <SelectTrigger id="category" className="w-[150px] bg-white">
