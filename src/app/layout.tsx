@@ -34,8 +34,8 @@ export default function RootLayout({
             alt="Hero"
             priority={true}
             className="fixed left-0 top-0 -z-10 h-full w-full object-cover"
-            width={1000}
-            height={1000}
+            width={100000}
+            height={100000}
           />
           <div className="flex h-screen flex-col content-between justify-between">
             <Navbar />

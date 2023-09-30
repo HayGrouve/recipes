@@ -155,7 +155,7 @@ export default function Home() {
         </Select>
       </div>
 
-      <div className="responsive-grid mt-6 justify-items-center sm:mt-10">
+      <div className="responsive-grid mt-6 justify-items-center px-5 sm:mt-10 sm:px-0">
         {isLoading &&
           new Array(8).fill(0).map((_, index) => {
             return <CardSkeleton key={index} />;

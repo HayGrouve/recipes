@@ -26,17 +26,19 @@ const Card: FC<IProps> = ({
 }) => {
   return (
     <Link href={`recipe/${id}`}>
-      <div className="card-aspect h-full w-64 max-w-sm shadow-2xl md:w-80 lg:flex lg:w-auto">
-        <div className="h-48 flex-none overflow-hidden rounded-t bg-cover text-center lg:h-auto lg:w-48 lg:rounded-t-none lg:rounded-bl lg:rounded-tl">
+      <div className="card-aspect shadow-2xl">
+        <div className=" overflow-hidden rounded-t">
           <img
-            className="h-full w-full object-cover"
+            className="aspect-square h-full w-full object-cover"
             src={image ? image : "/recipe.jpg"}
             alt={title}
           />
         </div>
-        <div className="flex flex-col justify-between rounded-b border-b border-l border-r border-gray-400 bg-white p-4 leading-normal lg:rounded-b-none lg:rounded-r lg:border-l-0 lg:border-t lg:border-gray-400">
-          <div className="mb-8 flex h-full flex-col items-center justify-center text-center">
-            <h3 className="mb-2 text-2xl font-bold text-gray-900">{title}</h3>
+        <div className="bg-white p-4 ">
+          <div className="mb-8 text-center">
+            <h3 className="mb-2 max-h-8 overflow-hidden text-2xl font-bold text-gray-900">
+              {title}
+            </h3>
             <p className="text-xs text-gray-600">Category:</p>
             <p className="font-bold text-gray-500">
               {`${category.slice(0, 1).toUpperCase()}${category.slice(1)}`}
