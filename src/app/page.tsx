@@ -19,7 +19,14 @@ export default function Home() {
   const [isLoading, setIsLoading] = useState(false);
   const [searchValue, setSearchValue] = useState("");
   const [recipes, setRecipes] = useState<Recipe[]>([]);
+
   const dbRecipes = useRef<Recipe[]>(recipes);
+  const selectCategories = dbRecipes.current.map((recipe) =>
+    recipe.category.toLowerCase(),
+  );
+  const selectUsers = dbRecipes.current.map((recipe) =>
+    recipe.userName.toLowerCase(),
+  );
 
   const onSearch = (e: ChangeEvent<HTMLInputElement>) => {
     setSearchValue(e.target.value);
@@ -98,26 +105,16 @@ export default function Home() {
           </SelectTrigger>
           <SelectContent>
             <SelectItem value="all">All</SelectItem>
-            {dbRecipes.current.map((recipe, index) => {
-              if (recipe.category.toLowerCase() === "all") return;
-              if (
-                index !== 0 &&
-                recipe.category.toLowerCase() ===
-                  dbRecipes.current[index - 1].category.toLowerCase()
-              ) {
-                return;
-              }
-              return (
-                <SelectItem
-                  key={recipe.id}
-                  value={recipe.category.toLowerCase()}
-                >
-                  {`${recipe.category
-                    .at(0)
-                    ?.toUpperCase()}${recipe.category.slice(1)}`}
-                </SelectItem>
-              );
-            })}
+            {Array.from(new Set(selectCategories))
+              .filter((category) => category !== "all")
+              .sort()
+              .map((category) => {
+                return (
+                  <SelectItem key={category} value={category}>
+                    {`${category.at(0)?.toUpperCase()}${category.slice(1)}`}
+                  </SelectItem>
+                );
+              })}
           </SelectContent>
         </Select>
         <Label htmlFor="author" className="text-lg text-white">
@@ -133,24 +130,15 @@ export default function Home() {
           </SelectTrigger>
           <SelectContent>
             <SelectItem value="all">All</SelectItem>
-            {dbRecipes.current.map((recipe, index) => {
-              if (
-                index !== 0 &&
-                recipe.userName === dbRecipes.current[index - 1].userName
-              ) {
-                return;
-              }
-              return (
-                <SelectItem
-                  key={recipe.id}
-                  value={recipe.userName.toLowerCase()}
-                >
-                  {`${recipe.userName
-                    .at(0)
-                    ?.toUpperCase()}${recipe.userName.slice(1)}`}
-                </SelectItem>
-              );
-            })}
+            {Array.from(new Set(selectUsers))
+              .sort()
+              .map((user) => {
+                return (
+                  <SelectItem key={user} value={user}>
+                    {`${user.at(0)?.toUpperCase()}${user.slice(1)}`}
+                  </SelectItem>
+                );
+              })}
           </SelectContent>
         </Select>
       </div>
