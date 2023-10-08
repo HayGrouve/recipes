@@ -145,7 +145,7 @@ export default function Home() {
 
       <div className="responsive-grid mt-6 justify-items-center px-5 sm:mt-10 sm:px-0">
         {isLoading &&
-          new Array(8).fill(0).map((_, index) => {
+          new Array(4).fill(0).map((_, index) => {
             return <CardSkeleton key={index} />;
           })}
         {recipes.map((recipe) => {
