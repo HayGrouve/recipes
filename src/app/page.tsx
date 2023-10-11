@@ -20,6 +20,11 @@ export default function Home() {
     recipe.userName.toLowerCase(),
   );
 
+  const clearFilters = () => {
+    setSearchValue("");
+    setRecipes(dbRecipes.current);
+  };
+
   const onSearch = (e: ChangeEvent<HTMLInputElement>) => {
     setSearchValue(e.target.value);
     setRecipes(
@@ -82,6 +87,7 @@ export default function Home() {
         onSelectCategory={onSelectCategory}
         selectUsers={selectUsers}
         onSelectAuthor={onSelectAuthor}
+        clearFilters={clearFilters}
       />
       <div className="responsive-grid mt-6 justify-items-center px-5 sm:mt-10 sm:px-0">
         {isLoading &&
