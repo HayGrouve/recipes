@@ -26,7 +26,7 @@ const Card: FC<IProps> = ({
 }) => {
   return (
     <Link href={`recipe/${id}`}>
-      <div className="card-aspect shadow-2xl" title={title}>
+      <div className="card-aspect max-w-sm shadow-2xl" title={title}>
         <div className=" overflow-hidden rounded-t">
           <img
             className="aspect-square h-full w-full object-cover"

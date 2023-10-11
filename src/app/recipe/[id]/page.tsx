@@ -55,7 +55,7 @@ const Page: FC = ({ params }: any) => {
       </div>
       <div className="mt-10 grid max-w-4xl grid-cols-1 gap-6 rounded bg-gray-800 text-white">
         <img
-          className="aspect-video w-full  rounded-tl rounded-tr object-cover lg:rounded-bl lg:rounded-tr-none"
+          className="aspect-video w-full rounded-tl rounded-tr object-cover lg:rounded-bl lg:rounded-tr-none"
           src={image ? image : "/recipe.jpg"}
           alt={title ? title : "Recipe"}
         />
