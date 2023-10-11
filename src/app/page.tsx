@@ -29,7 +29,7 @@ export default function Home() {
     setSearchValue(e.target.value);
     setRecipes(
       dbRecipes.current.filter((recipe) =>
-        recipe.title.toLowerCase().includes(e.target.value),
+        recipe.title.toLowerCase().includes(e.target.value.toLowerCase()),
       ),
     );
   };
