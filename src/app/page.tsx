@@ -6,6 +6,7 @@ import Card from "../components/card";
 import { Recipe } from "../lib/types";
 import CardSkeleton from "../components/card-skeleton";
 import Filters from "../components/filters";
+import { DrawerDialogDemo } from "../components/filters2";
 
 export default function Home() {
   const [isLoading, setIsLoading] = useState(false);
@@ -80,7 +81,8 @@ export default function Home() {
       <h1 className="text-center text-4xl font-bold tracking-wide text-white sm:text-7xl">
         Recipes
       </h1>
-      <Filters
+      <DrawerDialogDemo searchValue={searchValue} onSearch={onSearch} />
+      {/* <Filters
         searchValue={searchValue}
         onSearch={onSearch}
         selectCategories={selectCategories}
@@ -88,7 +90,7 @@ export default function Home() {
         selectUsers={selectUsers}
         onSelectAuthor={onSelectAuthor}
         clearFilters={clearFilters}
-      />
+      /> */}
       <div className="responsive-grid mt-6 justify-items-center px-5 sm:mt-10 sm:px-0">
         {isLoading &&
           new Array(4).fill(0).map((_, index) => {
