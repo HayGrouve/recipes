@@ -1,12 +1,10 @@
 "use client";
 
-import Pagination from "../components/pagination";
 import { ChangeEvent, useEffect, useRef, useState } from "react";
 import Card from "../components/card";
-import { Recipe } from "../lib/types";
 import CardSkeleton from "../components/card-skeleton";
-import Filters from "../components/filters";
-import { DrawerDialogDemo } from "../components/filters2";
+import { Recipe } from "../lib/types";
+import { Filters } from "../components/filters";
 
 export default function Home() {
   const [isLoading, setIsLoading] = useState(false);
@@ -14,11 +12,11 @@ export default function Home() {
   const [recipes, setRecipes] = useState<Recipe[]>([]);
 
   const dbRecipes = useRef<Recipe[]>(recipes);
-  const selectCategories = dbRecipes.current.map((recipe) =>
-    recipe.category.toLowerCase(),
+  const selectCategories = Array.from(
+    new Set(dbRecipes.current.map((recipe) => recipe.category.toLowerCase())),
   );
-  const selectUsers = dbRecipes.current.map((recipe) =>
-    recipe.userName.toLowerCase(),
+  const selectUsers = Array.from(
+    new Set(dbRecipes.current.map((recipe) => recipe.userName.toLowerCase())),
   );
 
   const clearFilters = () => {
@@ -81,16 +79,19 @@ export default function Home() {
       <h1 className="text-center text-4xl font-bold tracking-wide text-white sm:text-7xl">
         Recipes
       </h1>
-      <DrawerDialogDemo searchValue={searchValue} onSearch={onSearch} />
-      {/* <Filters
-        searchValue={searchValue}
-        onSearch={onSearch}
-        selectCategories={selectCategories}
-        onSelectCategory={onSelectCategory}
-        selectUsers={selectUsers}
-        onSelectAuthor={onSelectAuthor}
-        clearFilters={clearFilters}
-      /> */}
+      <div className="mt-6 flex justify-center">
+        <Filters
+          searchValue={searchValue}
+          onSearch={onSearch}
+          selectCategories={selectCategories}
+          currentCategory={recipes[0]?.category}
+          onSelectCategory={onSelectCategory}
+          selectUsers={selectUsers}
+          currentAuthor={recipes[0]?.userName}
+          onSelectAuthor={onSelectAuthor}
+          clearFilters={clearFilters}
+        />
+      </div>
       <div className="responsive-grid mt-6 justify-items-center px-5 sm:mt-10 sm:px-0">
         {isLoading &&
           new Array(4).fill(0).map((_, index) => {
