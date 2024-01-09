@@ -6,7 +6,6 @@ import "react-toastify/dist/ReactToastify.css";
 import Navbar from "../components/navbar";
 import { ClerkProvider } from "@clerk/nextjs";
 import Footer from "../components/footer";
-import Image from "next/image";
 
 const roboto = Roboto({
   weight: "400",
@@ -29,14 +28,6 @@ export default function RootLayout({
           suppressHydrationWarning={true}
           className={`${roboto.className} tracking-wide`}
         >
-          <Image
-            src="/background.webp"
-            alt="Hero"
-            priority={true}
-            className="fixed left-0 top-0 -z-10 h-full w-full object-cover"
-            width={100000}
-            height={100000}
-          />
           <div className="flex h-screen flex-col content-between justify-between">
             <Navbar />
             {children}

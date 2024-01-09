@@ -5,11 +5,13 @@ import Card from "../components/card";
 import CardSkeleton from "../components/card-skeleton";
 import { Recipe } from "../lib/types";
 import { Filters } from "../components/filters";
+import Image from "next/image";
 
 export default function Home() {
   const [isLoading, setIsLoading] = useState(false);
   const [searchValue, setSearchValue] = useState("");
   const [recipes, setRecipes] = useState<Recipe[]>([]);
+  const isDesktop = window.innerWidth > 768;
 
   const dbRecipes = useRef<Recipe[]>(recipes);
   const selectCategories = Array.from(
@@ -113,6 +115,14 @@ export default function Home() {
           );
         })}
       </div>
+      <Image
+        src={isDesktop ? "/background.webp" : "/mobile-background.jpg"}
+        alt="background"
+        priority={true}
+        className="fixed left-0 top-0 -z-10 h-full w-full object-cover"
+        width={5000}
+        height={5000}
+      />
       {/* <Pagination /> */}
     </main>
   );

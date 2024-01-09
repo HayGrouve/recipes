@@ -56,7 +56,7 @@ export function Filters({
 }: IProps) {
   const [open, setOpen] = useState(false);
   const [isCleared, setIsCleared] = useState(false);
-  const isDesktop = window.innerWidth > 768 ? true : false;
+  const isDesktop = window.innerWidth > 768;
 
   const handleClear = (e: any) => {
     e.preventDefault();
