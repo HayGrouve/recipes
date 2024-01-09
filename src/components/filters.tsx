@@ -166,7 +166,12 @@ function ProfileForm({
   setIsCleared,
 }: SearchProps) {
   return (
-    <form className={cn("grid items-start gap-4 p-4", className)}>
+    <form
+      onSubmit={(e) => {
+        e.preventDefault();
+      }}
+      className={cn("grid items-start gap-4 p-4", className)}
+    >
       <div className="grid gap-2">
         <Label htmlFor="search">Search</Label>
         <Input
