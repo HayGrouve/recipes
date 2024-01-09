@@ -119,7 +119,7 @@ export default function Home() {
         src={isDesktop ? "/background.webp" : "/mobile-background.jpg"}
         alt="background"
         priority={true}
-        className="fixed left-0 top-0 -z-10 h-full w-full object-cover"
+        className="h-[100% + 60px] fixed left-0 top-0 -z-10  w-full object-cover"
         width={5000}
         height={5000}
       />
